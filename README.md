@@ -1,2 +1,2 @@
-# AES-System-for-Chinese-Learner
-面向汉语学习者的作文自动评分系统
+# AES-System
+为非母语汉语学习者提供的在线作文评分系统
