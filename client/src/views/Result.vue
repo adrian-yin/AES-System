@@ -74,14 +74,10 @@
                         class="el-menu-demo"
                         >
                             <el-menu-item index="1" @click="setArticleComment">原文点评</el-menu-item>
-                            <el-menu-item index="2" @click="setSuggestion">提升建议</el-menu-item>
-                            <el-menu-item index="3" @click="setVocabularyDevelopment">词汇拓展</el-menu-item>
+                            <el-menu-item index="2" @click="setVocabularyDevelopment">词汇拓展</el-menu-item>
                     </el-menu>
-                    <el-card class="box-card">
-                        <div class="text">
-                            {{ cardContent }}
-                        </div>
-                    </el-card>
+                    <component-comment ref="comment" class="box-card" v-if="boxType === comment"></component-comment>
+                    <component-vocabulary class="box-card" v-else-if="boxType === vocabulary"></component-vocabulary>
                 </div>
             </el-col>
         </el-row>
@@ -92,10 +88,17 @@
     import https from '../api/https.js'
     import echarts from 'echarts'
 
+    import Comment from '@/components/Comment'
+    import Vocabulary from '@/components/Vocabulary'
+
     export default {
+        components: {
+            'component-comment': Comment,
+            'component-vocabulary': Vocabulary
+        },
         data () {
             return {
-                cardContent: '',
+                boxType: 'comment',
                 activeIndex: '1',
                 articleTitle: '',
                 articleContent: '',
@@ -103,9 +106,9 @@
                 vocabularyLevel: 0,
                 titleRelativity: 0,
                 sentenceDifficulty: 0,
-                articleComment: '',
+                articleComment: {},
                 suggestion: '',
-                vocabularyDevelopment: '',
+                // vocabularyDevelopment: '',
                 hsk1: 0,
                 hsk2: 0,
                 hsk3: 0,
@@ -117,13 +120,10 @@
         methods: {
             // 设置卡片内容
             setArticleComment () {
-                this.cardContent = this.articleComment;
-            },
-            setSuggestion () {
-                this.cardContent = this.suggestion;
+                this.boxType = 'comment';
             },
             setVocabularyDevelopment () {
-                this.cardContent = this.vocabularyDevelopment;
+                this.boxType = 'vocabulary';
             },
             // 绘制词汇分布饼状图
             drawVocabularyPie () {
@@ -181,7 +181,7 @@
                     this.sentenceDifficulty = res.data['sentenceDifficulty'];
                     this.articleComment = res.data['articleComment'];
                     this.suggestion = res.data['suggestion'];
-                    this.vocabularyDevelopment = res.data['vocabularyDevelopment'];
+                    // this.vocabularyDevelopment = res.data['vocabularyDevelopment'];
                     this.hsk1 = res.data['hsk1'];
                     this.hsk2 = res.data['hsk2'];
                     this.hsk3 = res.data['hsk3'];
@@ -200,6 +200,9 @@
                     // 绘制图表
                     this.drawVocabularyPie();
                     return true;
+
+                    // 向子组件Comment传递数据
+                    this.$refs.comment.getArticleComment(this.articleComment);
                 } else {
                     return false;
                 }

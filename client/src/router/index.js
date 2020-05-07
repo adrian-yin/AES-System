@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '@/views/Main'
+import Begin from '@/views/Begin'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import UserMain from '@/views/UserMain'
@@ -103,6 +104,16 @@ const router = new VueRouter({
                 required: true,
                 title: '评分结果'
             }
+        },
+        {
+            // 首页
+            path: '/begin',
+            name: 'Begin',
+            component: Begin,
+            meta: {
+                required: false,
+                title: '首页'
+            }
         }
     ]
 })
@@ -122,9 +133,9 @@ router.beforeEach((to, from, next) => {
                 store.state.token = sessionStorage.getItem('token');
                 next();
             } else {
-                // 跳转到登陆页面并重定向到原目标地址
+                // 跳转到登陆页面
                 next({
-                    path: '/login',
+                    path: '/begin',
                     query: { redirect: to.fullpath }
                 })
             }
