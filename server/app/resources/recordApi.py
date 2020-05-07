@@ -59,7 +59,7 @@ class RecordApi(Resource):
             "hsk6": record.hsk6,
             # "articleComment": record.article_comment, # origin_html
             # "problem_detail": problem_detail_dict_list
-            "suggestion": record.suggestion,
+            "suggestion": json.loads(record.suggestion),
             "articleComment": articleComment
         }
 

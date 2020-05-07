@@ -24,7 +24,7 @@ class Config(object):
 # 开发环境下配置
 class DevelopConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:jx9X-HC?@localhost:3306/aesdb?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://adrian:jx9X-HC?@localhost:3306/aesdb?charset=utf8'
 
 
 # 产品环境下配置

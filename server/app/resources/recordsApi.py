@@ -94,7 +94,7 @@ def correct_byWenXin(essay):
     data_write = json.dumps(data_write)
     url_write = "http://202.112.194.61:8091/gec/write"
     r = requests.post(url=url_write, headers=headers, data=data_write)
-    print(re.search('\d+', r.text))
+    # print(re.search('\d+', r.text))
     data_check = {
         "id":re.search('\d+', r.text).group(0)
     }
@@ -155,7 +155,6 @@ class RecordsApi(Resource):
         correct_result_json, origin, corrected, problem_detail, origin_html = correct_byWenXin(paragragh.join(paragragh_WenZhang))
         wrong_words = []
         for word in problem_detail:
-            id = word['id']
             origin_text = word['origin_text']
             origin_text_html = word['origin_text_html']
             correct_text = word['correct_text']
@@ -176,19 +175,11 @@ class RecordsApi(Resource):
             token_str = word['token_str']
             token_strs = word['token_strs']
             wrong_words.append(origin_text)
-            problem_detail_data = WrongCharModel(id, origin_text, origin_text_html, correct_text, correct_text_html, origin_start_index, 
-                                                 origin_end_index, correct_start_index, 
-                                                 correct_end_index, create_time, update_time, problem_type_zh, 
-                                                 problem_type_en, paragraph_index, sentence_index, problem_status, 
-                                                 corpus_id, 
-                                                 token_array, token_str, token_strs, g.user.id)   # 这边要装此次的record id, 但是不知道为什么g.user.id不行（zhy）
-            # print("2")
-            problem_detail_data.add_wrongchar_record()
             # print("3")
 
 # ***************************************************************************************************************
         # 查字典
-        file = open("app/resources/try_json_data.json", 'r', encoding='UTF-8')
+        file = open("app/resources/xdhydcd_json_data.json", 'r', encoding='UTF-8')
         new_dict = {}  # {"你好"：{"pinyin":"nihao", "main":[{}..]}}
         for data in file.readlines():
             dic = json.loads(data)
@@ -229,12 +220,35 @@ class RecordsApi(Resource):
         hsk6 = random.random() * 15
         r = RecordModel(articleTitle, articleContent, totalScore, vocabularyLevel, titleRelativity, sentenceDifficulty, articleComment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, g.user.id)
         r.add_record()
+            
+        for word in problem_detail:
+            origin_text = word['origin_text']
+            origin_text_html = word['origin_text_html']
+            correct_text = word['correct_text']
+            correct_text_html = word['correct_text_html']
+            origin_start_index = word['origin_start_index']
+            origin_end_index = word['origin_end_index']
+            correct_start_index = word['correct_start_index']
+            correct_end_index = word['correct_end_index']
+            create_time = word['create_time']
+            update_time = word['update_time']
+            problem_type_zh = word['problem_type_zh']
+            problem_type_en = word['problem_type_en']
+            paragraph_index = word['paragraph_index']
+            sentence_index = word['sentence_index']
+            problem_status = word['problem_status']
+            corpus_id = word['corpus_id']
+            token_array = word['token_array']
+            token_str = word['token_str']
+            token_strs = word['token_strs']
+            problem_detail_data = WrongCharModel(origin_text, origin_text_html, correct_text, correct_text_html, origin_start_index, origin_end_index, correct_start_index, correct_end_index, create_time, update_time, problem_type_zh, problem_type_en, paragraph_index, sentence_index, problem_status, corpus_id, token_array, token_str, token_strs, r.id)   # 这边要装此次的record id, 但是不知道为什么g.user.id不行（zhy）
+            problem_detail_data.add_wrongchar_record()
 
         # 将correct结果的json存为文件
         # 以 correct_record的id 命名
         with open('app/resources/correct_jsons/correct_' + str(r.id) + '.json', 'w') as f:
             json.dump(correct_result_json, f)
-        print(correct_result_json)
+        # print(correct_result_json)
 
         return jsonify(code = 200, message = "成功", recordId = r.id)
 
