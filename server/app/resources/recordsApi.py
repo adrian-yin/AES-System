@@ -232,10 +232,8 @@ class RecordsApi(Resource):
 
         # 将correct结果的json存为文件
         # 以 correct_record的id 命名
-        with open('app/resources/correct_jsons/correct_' + str(r.id), 'w') as f:
+        with open('app/resources/correct_jsons/correct_' + str(r.id) + '.json', 'w') as f:
             json.dump(correct_result_json, f)
-
-        print(correct_result_json)
 
         return jsonify(code = 200, message = "成功", recordId = r.id)
 
