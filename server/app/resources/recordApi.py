@@ -13,7 +13,7 @@ class RecordApi(Resource):
         if record is None:
             return jsonify(code=403, message='参数无效')
 
-        with open('app/resources/correct_jsons/correct_' + record_id + '.json', 'r') as f:
+        with open('app/resources/correct_jsons/correct_' + str(record_id) + '.json', 'r') as f:
             articleComment = json.load(f)
 
         # problem_details_list  = WrongCharModel.query.filter_by(record_id = record.id).all()  # 每一行信息都作为List的一个元素
@@ -50,7 +50,7 @@ class RecordApi(Resource):
             "totalScore": record.total_score,
             # "articleComment": record.article_comment, # origin_html
             # "problem_detail": problem_detail_dict_list
-            "suggestion": suggestion,
+            "suggestion": record.suggestion,
             "articleComment": articleComment
         }
 
