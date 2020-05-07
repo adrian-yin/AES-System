@@ -9,7 +9,7 @@
       <div class="top-content">
         <div class="error-detail-text">错误情况分析</div>
         <div class="error-content-div">
-          <div class="top-content-right">
+          <!--<div class="top-content-right">
             <div>
               <div class="top-error-div" v-for="(itemFirst) in problem" :key="itemFirst.id">
                 <div
@@ -24,12 +24,12 @@
               </div>
             </div>
           </div>
-          <div id="myChart" class="top-content-left-1"></div>
+          <div id="myChart" class="top-content-left-1"></div>-->
         </div>
       </div>
       <div class="line-div"></div>
       <div class="right-bottom-div">
-        <div v-for="itemOne in showProblem" :key="itemOne.id">
+        <!--<div v-for="itemOne in showProblem" :key="itemOne.id">
           <div class="error-message-type-text">
             <div class="little_symbol"></div>
             {{itemOne.problem_type}}
@@ -80,6 +80,54 @@
                     style="font-size: 30px;"
                   >{{item.correct_text}}</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div v-for="item in showProblem" :key="item.id" class="each-error-shell-div">
+          <div
+            class="error-origin-text"
+            v-if="show_id!=item.id"
+            @click="showCorrectDetail(item.id,$event)"
+            @mouseover="showHoverStyle(item.id,$event)"
+            @mouseout="hiddenHoverStyle(item.id,$event)"
+          >
+            <div class="error-origin-content">
+              <div :class="item.problem_status==1?'sentence-before-div-1':'sentence-before-div'"></div>
+              <div
+                v-html="item.token_str"
+                :class="item.problem_status==2?'the-sentence-1':'the-sentence'"
+              >{{item.token_str}}</div>
+              <div class="correct-icon-show-div" v-if="item.problem_status==1">
+                <i class="el-icon-check"></i>&#8194;已改正
+              </div>
+              <div
+                :class="item.problem_status==2?'ignore-icon-show-div-1':'ignore-icon-show-div'"
+                v-if="item.problem_status==2"
+              >已忽略</div>
+            </div>
+          </div>
+          <div
+            class="error-content-info"
+            v-if="show_id==item.id"
+            @click="clickDetailDiv(item.id)"
+          >
+            <div class="error-content" v-html="item.token_strs">{{item.token_strs}}</div>
+            <div class="word-revise-div">
+              <div class="ErrorWordContent fsReJu">
+                <span class="originWordText ntLBp">你写的</span>
+                <span
+                  class="unfixed Checkstyle__ErrorWord-an9z37-43 gKCJOw"
+                  style="font-size: 30px;"
+                >{{item.origin_text}}</span>
+              </div>
+              <i class="el-icon-right right-icon-1"></i>
+              <div class="Checkstyle__CorrectWordContent-an9z37-40 ehNdGM">
+                <span class="Checkstyle__SmallWordTip-an9z37-41 ntLBp">修改建议</span>
+                <span
+                  class="unfixed Checkstyle__CorrectWord-an9z37-44 eUmdmJ"
+                  style="font-size: 30px;"
+                >{{item.correct_text}}</span>
               </div>
             </div>
           </div>
@@ -317,20 +365,16 @@ export default {
           console.log(error);
         });
         */
-    console.log(this.articleComment.essay);
-    console.log(this.articleComment.essay.current_html);
       this.contentText = this.articleComment.essay.current_html;
       this.problem_detail = this.articleComment.essay.problem_detail;
-      console.log(this.problem_detail);
-      console.log(this.$refs);
       this.problem = this.articleComment.problem;
-      var typeData = this.articleComment.problem_type_info;
-      this.typeData = JSON.parse(
+      //var typeData = this.articleComment.problem_type_info;
+      /*this.typeData = JSON.parse(
         JSON.stringify(typeData)
           .replace(/counts/g, "value")
           .replace(/problem_type_zh/g, "name")
-      );
-      this.drawLine();
+      );*/
+      // this.drawLine();
       this.showProblem = this.problem;
       this.$refs.quillEditorA.$refs.editor.innerHTML = this.contentText;
       this.$nextTick(function() {
