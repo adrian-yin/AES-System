@@ -2,115 +2,13 @@
   <div class="container">
     <div class="origin-div">
       <quill-editor :options="editorOption" ref="quillEditorA" class="quillEditor"></quill-editor>
-      <!-- <div  class="quillEditor" ref="quillEditor"></div> -->
     </div>
     <div class="result-div">
-      <!-- <div class="error-detail-text">错误情况分析</div> -->
-      <div class="top-content">
-        <div class="error-detail-text">错误情况分析</div>
-        <div class="error-content-div">
-          <!--<div class="top-content-right">
-            <div>
-              <div class="top-error-div" v-for="(itemFirst) in problem" :key="itemFirst.id">
-                <div
-                  :class="currentType==itemFirst.problem_type?'error-message-text kbmzcI-currentType':'error-message-text kbmzcI'"
-                  @click="clickErrorType(itemFirst.id,$event,itemFirst.problem_type)"
-                >
-                  {{itemFirst.problem_type}}
-                  <div
-                    :class="currentType==itemFirst.problem_type?'error-message-count-div-currentType':'error-message-count-div'"
-                  >{{itemFirst.problem_count}}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="myChart" class="top-content-left-1"></div>-->
-        </div>
-      </div>
-      <div class="line-div"></div>
+      <div class="error-detail-text">错误情况分析</div>
       <div class="right-bottom-div">
-        <!--<div v-for="itemOne in showProblem" :key="itemOne.id">
-          <div class="error-message-type-text">
-            <div class="little_symbol"></div>
-            {{itemOne.problem_type}}
-          </div>
-          <div v-for="item in itemOne.problem_list" :key="item.id" class="each-error-shell-div">
-            <div
-              class="error-origin-text"
-              v-if="show_id!=item.id"
-              @click="showCorrectDetail(item.id,$event)"
-              @mouseover="showHoverStyle(item.id,$event)"
-              @mouseout="hiddenHoverStyle(item.id,$event)"
-            >
-              <div class="error-origin-content">
-                <div :class="item.problem_status==1?'sentence-before-div-1':'sentence-before-div'"></div>
-                <div
-                  v-html="item.token_str"
-                  :class="item.problem_status==2?'the-sentence-1':'the-sentence'"
-                >{{item.token_str}}</div>
-                <div class="correct-icon-show-div" v-if="item.problem_status==1">
-                  <i class="el-icon-check"></i>&#8194;已改正
-                </div>
-                <div
-                  :class="item.problem_status==2?'ignore-icon-show-div-1':'ignore-icon-show-div'"
-                  v-if="item.problem_status==2"
-                >已忽略</div>
-              </div>
-            </div>
-            <div
-              class="error-content-info"
-              v-if="show_id==item.id"
-              @click="clickDetailDiv(item.id)"
-            >
-              <div class="error-content" v-html="item.token_strs">{{item.token_strs}}</div>
-
-              <div class="word-revise-div">
-                <div class="ErrorWordContent fsReJu">
-                  <span class="originWordText ntLBp">你写的</span>
-                  <span
-                    class="unfixed Checkstyle__ErrorWord-an9z37-43 gKCJOw"
-                    style="font-size: 30px;"
-                  >{{item.origin_text}}</span>
-                </div>
-                <i class="el-icon-right right-icon-1"></i>
-                <div class="Checkstyle__CorrectWordContent-an9z37-40 ehNdGM">
-                  <span class="Checkstyle__SmallWordTip-an9z37-41 ntLBp">修改建议</span>
-                  <span
-                    class="unfixed Checkstyle__CorrectWord-an9z37-44 eUmdmJ"
-                    style="font-size: 30px;"
-                  >{{item.correct_text}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <div v-for="item in showProblem" :key="item.id" class="each-error-shell-div">
           <div
-            class="error-origin-text"
-            v-if="show_id!=item.id"
-            @click="showCorrectDetail(item.id,$event)"
-            @mouseover="showHoverStyle(item.id,$event)"
-            @mouseout="hiddenHoverStyle(item.id,$event)"
-          >
-            <div class="error-origin-content">
-              <div :class="item.problem_status==1?'sentence-before-div-1':'sentence-before-div'"></div>
-              <div
-                v-html="item.token_str"
-                :class="item.problem_status==2?'the-sentence-1':'the-sentence'"
-              >{{item.token_str}}</div>
-              <div class="correct-icon-show-div" v-if="item.problem_status==1">
-                <i class="el-icon-check"></i>&#8194;已改正
-              </div>
-              <div
-                :class="item.problem_status==2?'ignore-icon-show-div-1':'ignore-icon-show-div'"
-                v-if="item.problem_status==2"
-              >已忽略</div>
-            </div>
-          </div>
-          <div
             class="error-content-info"
-            v-if="show_id==item.id"
-            @click="clickDetailDiv(item.id)"
           >
             <div class="error-content" v-html="item.token_strs">{{item.token_strs}}</div>
             <div class="word-revise-div">
@@ -136,438 +34,47 @@
     </div>
   </div>
 </template>
+
 <script>
-/* eslint-disable */
-import { stringify } from "querystring";
-import echarts from "echarts";
 export default {
-  name: "XieZuo",
-
-  props: {
-    articleComment: {
-      type: Object,
-      default: {}
-    }
-  },
-  data() {
-    return {
-      contentText: "",
-      editorOption: {
-        // quill文本框配置项
-        theme: "snow",
-        readOnly: true,
-        placeholder: "",
-        modules: {
-          toolbar: false
+    name: 'Comment',
+    props: {
+        articleComment: {
+            type: Object
         }
-      },
-      quillA: null,
-      problem_detail: [],
-      showProblem: [],
-      problem: [],
-      show_id: null,
-      showOneType: true,
-      currentType: null,
-      typeData: [],
-    };
-  },
-  mounted() {
-    document.getElementById("app").style.minHeight = 0;
-    document.getElementById("app").style.height = "100%";
-    this.quillA=this.$refs.quillEditorA.quill
-    this.getCheckEssay(this.$route.query.id);
-    this.drawLine();
-  },
-  methods: {
-    getArticleComment (parentArticleComment) {
-      this.articleComment = parentArticleComment;
     },
-    addElementEvent () {
-      for (var i = 0; i < this.problem_detail.length; i++) {
-        var dom = document.getElementById(this.problem_detail[i].id);
-        var _this = this;
-        dom.onmouseenter = function(e) {
-          var name = "c" + e.target.id;
-          if (document.getElementsByName(name)[0] != null) {
-            if (e.target.id != _this.show_id) {
-              document
-                .getElementsByName(name)[0]
-                .scrollIntoView({ behavior: "smooth", inline: "nearest" });
-              // console.log(document.getElementsByName(name)[0].parentNode.parentNode)
-              document
-                .getElementsByName(name)[0]
-                .parentNode.parentNode.setAttribute("class", "left-mouseenter");
-              console.log(e.currentTarget.className);
-
-              if (e.currentTarget.className == "correct-text-class") {
-              } else if (e.currentTarget.className == "origin-text-class") {
-                document.getElementsByName(name)[0].style.color =
-                  "rgb(238, 113, 153)";
-                document.getElementsByName(
-                  name
-                )[0].parentNode.previousElementSibling.style.backgroundColor =
-                  "rgb(238, 113, 153)";
-              } else {
-              }
-            } else {
-            }
-          }
-        };
-        dom.onmouseleave = function (e) {
-          var name = "c" + e.target.id;
-          if (document.getElementsByName(name)[0] != null) {
-            document
-              .getElementsByName(name)[0]
-              .parentNode.parentNode.setAttribute(
-                "class",
-                "error-origin-content"
-              );
-
-            if (e.currentTarget.className == "correct-text-class") {
-            } else if (e.currentTarget.className == "origin-text-class") {
-              document.getElementsByName(name)[0].style.color = "";
-              document.getElementsByName(
-                name
-              )[0].parentNode.previousElementSibling.style.backgroundColor = "";
-            } else {
-            }
-          }
-        };
-        dom.onclick = function (e) {
-          var id = e.target.id;
-          var click_left = "c" + id;
-          if (id != _this.show_id) {
-            if (_this.show_id != null) {
-              // 将之前修改的类名修复
-              var showIdDom = document.getElementById(_this.show_id);
-              var className = showIdDom.className.replace("-hover", "");
-              showIdDom.setAttribute("class", className);
-              console.log(className);
-            }
-            if (_this.currentType == null) {
-              // _this.show_id=id
-              _this.showCorrectDetail(id);
-            } else {
-              var problemList = _this.showProblem[0].problem_list;
-              var bool = false;
-              for (var i = 0; i < problemList.length; i++) {
-                if (id == problemList[i].id) {
-                  bool = true;
-                  break;
+    data () {
+        return {
+            contentText: '',
+            editorOption: {
+                // quill文本框配置项
+                theme: 'snow',
+                readOnly: true,
+                placeholder: '',
+                modules: {
+                toolbar: false
                 }
-              }
-              if (bool) {
-                //  _this.show_id=id
-                _this.showCorrectDetail(id);
-              } else {
-                _this.showProblem = _this.problem;
-                _this.currentType = null;
-                name = "c" + id;
-                // console.log(document.getElementsByName(name))
-                _this.$nextTick(function() {
-                  //dom已更新
-                  // console.log(document.getElementsByName(click_left)[0])
-                  document
-                    .getElementsByName(name)[0]
-                    .scrollIntoView({ behavior: "smooth", inline: "nearest" });
-                  // _this.show_id=id
-
-                  _this.showCorrectDetail(id);
-                });
-              }
-            }
-          }
-        };
-      }
-    },
-    drawLine () {
-      let myChart = echarts.init(document.getElementById("myChart"));
-      var option = {
-        tooltip: {
-          textStyle: {
-            fontSize: 11
-          }
-        },
-        series: [
-          {
-            name: "",
-            type: "pie",
-            selectedMode: "single",
-            selectedOffset: 18,
-            clockwise: true,
-            color: [
-              "#7EC0EE",
-              "#FF9F7F",
-              "#FFD700",
-              "#C9C9C9",
-              "#C0FF3E",
-              "#54FF9F",
-              "#00EE76",
-              "#FF6EB4",
-              "#00BFFF",
-              "#00EE00",
-              "#FFB6C1",
-              "#00BFFF"
-            ],
-            label: {
-              normal: {
-                textStyle: {
-                  fontSize: 10,
-                  color: "#235894"
-                },
-                show: false
-              }
             },
-            data: this.typeData
-          }
-        ]
-      };
-      myChart.setOption(option);
+            showProblem: [],
+            myArticleComment: {}
+        }
     },
-    getCheckEssay (id) {
-      /*
-      this.axios
-        .post(
-          this.GLOBAL.BASE_URL + "/gec/check",
-          {
-            id: id,
-            user_id:window.localStorage.getItem("user_id")
-          },
-          {
-            headers: {
-              "content-type": "application/x-www-form-urlencoded;charset=utf-8"
-            },
-            withCredentials: true
-          }
-        )
-        .then(response => {
-          console.log(response);
-          this.contentText = response.data.essay.current_html;
-          this.problem_detail = response.data.essay.problem_detail;
-          console.log(this.problem_detail);
-          console.log(this.$refs);
-          this.problem = response.data.problem;
-          var typeData = response.data.problem_type_info;
-          this.typeData = JSON.parse(
-            JSON.stringify(typeData)
-              .replace(/counts/g, "value")
-              .replace(/problem_type_zh/g, "name")
-          );
-          this.drawLine();
-          this.showProblem = this.problem;
-          this.$refs.quillEditorA.$refs.editor.innerHTML = this.contentText;
-          this.$nextTick(function() {
-            this.addElementEvent();
-          });
-          // this.quillA.innerHTML=this.contentText
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        */
-      this.contentText = this.articleComment.essay.current_html;
-      this.problem_detail = this.articleComment.essay.problem_detail;
-      this.problem = this.articleComment.problem;
-      //var typeData = this.articleComment.problem_type_info;
-      /*this.typeData = JSON.parse(
-        JSON.stringify(typeData)
-          .replace(/counts/g, "value")
-          .replace(/problem_type_zh/g, "name")
-      );*/
-      // this.drawLine();
-      this.showProblem = this.problem;
-      this.$refs.quillEditorA.$refs.editor.innerHTML = this.contentText;
-      this.$nextTick(function() {
-        this.addElementEvent();
-      });
+    mounted () {
+        this.contentText = this.articleComment.essay.origin_html;
+        this.showProblem = this.articleComment.essay.problem_detail;
+        this.$refs.quillEditorA.$refs.editor.innerHTML = this.contentText;
     },
-    testAmend () {
-      this.quillA.updateContents(this.data, "api");
-    },
-    clickErrorType (id, e, problem_type) {
-      if (this.currentType == null) {
-        if (this.show_id != null) {
-          document.getElementById(this.show_id).style.backgroundColor = "";
-          var showIdDom = document.getElementById(this.show_id);
-          var className = showIdDom.className.replace("-hover", "");
-          showIdDom.setAttribute("class", className);
-          console.log(className);
-          this.show_id = null;
+    watch: {
+        articleComment (val) {
+            this.contentText = this.articleComment.essay.origin_html;
+            this.showProblem = this.articleComment.essay.problem_detail;
+            this.$refs.quillEditorA.$refs.editor.innerHTML = this.contentText;
         }
-        for (var i = 0; i < this.problem.length; i++) {
-          if (this.problem[i].problem_type == problem_type) {
-            var problemList = [];
-            problemList.push(this.problem[i]);
-            this.showProblem = problemList;
-          }
-        }
-        this.currentType = problem_type;
-      } else {
-        // 之前有选中的错误类型
-        if (this.currentType != problem_type) {
-          if (this.show_id != null) {
-            document.getElementById(this.show_id).style.backgroundColor = "";
-            var showIdDom = document.getElementById(this.show_id);
-            var className = showIdDom.className.replace("-hover", "");
-            showIdDom.setAttribute("class", className);
-            console.log(className);
-            this.show_id = null;
-          }
-          for (var i = 0; i < this.problem.length; i++) {
-            if (this.problem[i].problem_type == problem_type) {
-              this.currentType = problem_type;
-              var problemList = [];
-              problemList.push(this.problem[i]);
-              this.showProblem = problemList;
-              break;
-            }
-          }
-          // 点击之前相同的错误类型
-        } else {
-          this.currentType = null;
-          this.showProblem = this.problem;
-        }
-      }
-    },
-    showCorrectDetail (id) {
-      // 将之前的详情恢复
-      if (this.show_id != null) {
-        var problem_status = 0;
-        for (var item in this.problem_detail) {
-          if (this.problem_detail[item].id == this.show_id) {
-            problem_status = this.problem_detail[item].problem_status;
-          }
-        }
-        if (problem_status == 0) {
-          document
-            .getElementById(this.show_id)
-            .setAttribute("class", "origin-text-class");
-        } else if (problem_status == 1) {
-          document
-            .getElementById(this.show_id)
-            .setAttribute("class", "correct-text-class");
-        } else if (problem_status == 2) {
-          document
-            .getElementById(this.show_id)
-            .setAttribute("class", "ignore-text-class");
-        }
-      }
-      // 设置新打开的详情
-      this.show_id = id;
-      var problem_status = 0;
-      for (var item in this.problem_detail) {
-        if (this.problem_detail[item].id == this.show_id) {
-          problem_status = this.problem_detail[item].problem_status;
-        }
-      }
-      if (problem_status == 0) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "origin-text-class-hover");
-      } else if (problem_status == 1) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "correct-text-class-hover");
-      } else if (problem_status == 2) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "ignore-text-class-hover");
-      }
-    },
-    showHoverStyle(id, e) {
-      // 判断是否已改正
-      //  console.log(e.currentTarget.firstElementChild.firstElementChild)
-      //           console.log(document
-      // .getElementsByName('origin-text-class'));
-
-      var problem_status = 0;
-      for (var item in this.problem_detail) {
-        if (this.problem_detail[item].id == id) {
-          problem_status = this.problem_detail[item].problem_status;
-        }
-      }
-      // 判断是否已改正
-      if (problem_status == 0) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "origin-text-class-hover");
-console.log(e.currentTarget.firstElementChild.firstElementChild)
-        e.currentTarget.firstElementChild.firstElementChild.style.backgroundColor =
-          "rgb(238, 113, 153)";
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "origin-text-class-re-over");
-      } else if (problem_status == 1) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "correct-text-class-hover");
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "correct-text-class-re-over");
-      } else if (problem_status == 2) {
-        document
-          .getElementById(id)
-          .setAttribute("class", "ignore-text-class-hover");
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "ignore-text-class-re-over");
-      }
-    },
-    hiddenHoverStyle (id, e) {
-      e.currentTarget.firstElementChild.firstElementChild.style.backgroundColor =
-        "";
-      var problem_status = 0;
-      for (var item in this.problem_detail) {
-        if (this.problem_detail[item].id == id) {
-          problem_status = this.problem_detail[item].problem_status;
-        }
-      }
-      // 判断是否已改正
-      if (problem_status == 0) {
-        document.getElementById(id).setAttribute("class", "origin-text-class");
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "origin-text-class-re");
-      } else if (problem_status == 1) {
-        document.getElementById(id).setAttribute("class", "correct-text-class");
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "correct-text-class-re");
-      } else if (problem_status == 2) {
-        document.getElementById(id).setAttribute("class", "ignore-text-class");
-        var refContent = "c" + id;
-        document
-          .getElementsByName(refContent)[0]
-          .setAttribute("class", "ignore-text-class-re");
-      }
-    },
-    clickDetailDiv (id) {
-      this.show_id = null;
-    },
-    getShowProblem () {
-      if (this.currentType == null) {
-        this.showProblem = this.problem;
-      } else {
-        for (var i = 0; i < this.problem.length; i++) {
-          if (this.problem[i].problem_type == this.currentType) {
-            var problemList = [];
-            problemList.push(this.problem[i]);
-            this.showProblem = problemList;
-            break;
-          }
-        }
-      }
     }
-  }
-};
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 .el-icon-s-home{
   font-size:20px;
@@ -625,7 +132,6 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
 }
 .container {
   background-color: #f9f9fb;
-  min-width: 1024px;
   overflow-x: hidden;
   width: 100%;
   display: flex;
@@ -649,7 +155,7 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
   width: 540px;
   background-color: #ffffff;
   margin-right: 0px;
-  overflow: auto;
+  // overflow: auto;
   box-shadow: 0px 0px 10px 0px rgba(191, 204, 230, 0.3);
 }
 .quillEditor {
@@ -687,9 +193,9 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
   font-size: 18px;
   color: #b2b8c9;
   /* margin:15px 40px 0px 0px; */
-  height: 50px;
+  height: 30px;
 }
-/* 
+/*
   .top-error-div{
     padding-top: 16px;
   } */
@@ -745,7 +251,7 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
 
 /* right bottom */
 .right-bottom-div {
-  padding: 25px 45px 26px 45px;
+  padding: 5px 20px;
   overflow: auto;
 }
 .error-message-type-text {
@@ -879,10 +385,10 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
 .error-content-info {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(191, 204, 230, 0.75) 0px 10px 30px;
-  padding: 30px 30px 15px;
+  padding: 10px 10px;
   overflow: hidden;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 8px 0px;
   /* width:390px; */
 }
 .error-content {
@@ -890,7 +396,7 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
   line-height: 20px;
   font-size: 16px;
   color: rgb(132, 140, 163);
-  cursor: pointer;
+  // cursor: pointer;
 }
 
 .fsReJu {
@@ -930,7 +436,9 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
 }
 .word-revise-div {
   display: flex;
-  margin-top: 20px;
+  justify-content: center;
+  margin-top: 15px;
+  height: 70px;
 }
 .right-icon-1 {
   width: 20px;
@@ -1083,6 +591,6 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
 }
 .quillEditor {
   max-width: 620px;
-  min-width: 424px;
+  min-width: 380px;
 }
 </style>

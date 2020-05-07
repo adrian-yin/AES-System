@@ -44,18 +44,19 @@
                     <el-card class="suggestion-card">
                         <el-table
                             :data="tableData"
+                            height="260px"
                             style="width: 100%"
                             :default-sort = "{prop: 'num', order: 'descending'}"
                             >
                             <el-table-column
                                 prop="wrongchar"
                                 label="错别字"
-                                width="250">
+                                width="180">
                                 </el-table-column>
                             <el-table-column
                                 prop="num"
                                 label="错误次数"
-                                width="250">
+                                width="180">
                             </el-table-column>
                         </el-table>
                     </el-card>
@@ -132,7 +133,7 @@
                         if (JSON.stringify(this.wrongchars) === '{}') {
                             this.visible3 = false;
                         } else {
-                            this.drawWrongcharChart();
+                            // this.drawWrongcharChart();
                         }
 
                         this.drawScoreLine();
@@ -170,7 +171,7 @@
                             if (JSON.stringify(this.wrongchars) === '{}') {
                                 this.visible3 = false;
                             } else {
-                                this.drawWrongcharChart();
+                                // this.drawWrongcharChart();
                             }
 
                             this.drawScoreLine();

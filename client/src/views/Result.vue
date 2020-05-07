@@ -77,7 +77,7 @@
                             <el-menu-item index="2" @click="setVocabularyDevelopment">词汇拓展</el-menu-item>
                     </el-menu>
                     <component-comment :articleComment="articleComment" class="box-card" v-if="boxType === 'comment'"></component-comment>
-                    <component-vocabulary class="box-card" v-else-if="boxType === 'vocabulary'"></component-vocabulary>
+                    <component-vocabulary :suggestion="suggestion" class="box-card" v-else-if="boxType === 'vocabulary'"></component-vocabulary>
                 </div>
             </el-col>
         </el-row>
@@ -107,7 +107,7 @@
                 titleRelativity: 0,
                 sentenceDifficulty: 0,
                 articleComment: {},
-                suggestion: '',
+                suggestion: {},
                 // vocabularyDevelopment: '',
                 hsk1: 0,
                 hsk2: 0,
@@ -181,6 +181,7 @@
                     this.sentenceDifficulty = res.data.data['sentenceDifficulty'];
                     this.articleComment = res.data.data['articleComment'];
                     this.suggestion = res.data.data['suggestion'];
+                    console.log(this.suggestion);
                     // this.vocabularyDevelopment = res.data.data['vocabularyDevelopment'];
                     this.hsk1 = res.data.data['hsk1'];
                     this.hsk2 = res.data.data['hsk2'];
@@ -278,6 +279,7 @@
     }
     .box-card {
         margin: 50px auto 10px auto;
+        width: 100%;
         height: 300px;
     }
     .block-title{

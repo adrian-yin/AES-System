@@ -4,6 +4,7 @@
         <el-header>
             <el-menu
             :default-active="defaultActive"
+            background-color="#c2e9fb"
             mode="horizontal"
             router
             class="el-menu-demo"
