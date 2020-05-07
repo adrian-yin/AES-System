@@ -40,7 +40,7 @@
                         </div>
                 </div>
                 <div class="suggestion2">
-                    <el-col :span="10">
+                    <el-col :span="24">
                     <el-card class="suggestion-card">
                         <el-table
                             :data="tableData"
