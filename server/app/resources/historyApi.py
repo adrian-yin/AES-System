@@ -83,10 +83,10 @@ class HistoryApi(Resource):
 
             # 将时间范围内每条记录对应的错别字计算入wrongchars中
             for wc in record.wrongchars:
-                if wc.wrongchar in wrongchars.keys():
-                    wrongchars[wc.wrongchar] = wrongchars[wc.wrongchar] + 1
+                if wc.correct_text in wrongchars.keys():
+                    wrongchars[wc.correct_text] = wrongchars[wc.correct_text] + 1
                 else:
-                    wrongchars[wc.wrongchar] = 1
+                    wrongchars[wc.correct_text] = 1
 
         # TODO: 这里生成建议、词汇量、词汇量建议
         suggestion = '随意的一些建议'
