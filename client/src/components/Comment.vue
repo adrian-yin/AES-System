@@ -316,6 +316,8 @@ export default {
           console.log(error);
         });
         */
+	  console.log(this.articleComment.essay);
+	  console.log(this.articleComment.essay.current_html);
       this.contentText = this.articleComment.essay.current_html;
       this.problem_detail = this.articleComment.essay.problem_detail;
       console.log(this.problem_detail);

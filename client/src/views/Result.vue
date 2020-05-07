@@ -76,8 +76,8 @@
                             <el-menu-item index="1" @click="setArticleComment">原文点评</el-menu-item>
                             <el-menu-item index="2" @click="setVocabularyDevelopment">词汇拓展</el-menu-item>
                     </el-menu>
-                    <component-comment :articleComment="articleComment" class="box-card" v-if="boxType === comment"></component-comment>
-                    <component-vocabulary class="box-card" v-else-if="boxType === vocabulary"></component-vocabulary>
+                    <component-comment :articleComment="articleComment" class="box-card" v-if="boxType === 'comment'"></component-comment>
+                    <component-vocabulary class="box-card" v-else-if="boxType === 'vocabulary'"></component-vocabulary>
                 </div>
             </el-col>
         </el-row>
@@ -173,23 +173,24 @@
         mounted () {
             https.fetchGet('record/' + this.$route.query.recordId).then((res) => {
                 if (res.data['code'] === 200) {
-                    this.articleTitle = res.data['articleTitle'];
-                    this.articleContent = res.data['articleContent'];
-                    this.totalScore = res.data['totalScore'];
-                    this.vocabularyLevel = res.data['vocabularyLevel'];
-                    this.titleRelativity = res.data['titleRelativity'];
-                    this.sentenceDifficulty = res.data['sentenceDifficulty'];
-                    this.articleComment = res.data['articleComment'];
-                    this.suggestion = res.data['suggestion'];
-                    // this.vocabularyDevelopment = res.data['vocabularyDevelopment'];
-                    this.hsk1 = res.data['hsk1'];
-                    this.hsk2 = res.data['hsk2'];
-                    this.hsk3 = res.data['hsk3'];
-                    this.hsk4 = res.data['hsk4'];
-                    this.hsk5 = res.data['hsk5'];
-                    this.hsk6 = res.data['hsk6'];
+                    this.articleTitle = res.data.data['articleTitle'];
+                    this.articleContent = res.data.data['articleContent'];
+                    this.totalScore = res.data.data['totalScore'];
+                    this.vocabularyLevel = res.data.data['vocabularyLevel'];
+                    this.titleRelativity = res.data.data['titleRelativity'];
+                    this.sentenceDifficulty = res.data.data['sentenceDifficulty'];
+					console.log(this.sentenceDifficulty);
+                    this.articleComment = res.data.data['articleComment'];
+                    this.suggestion = res.data.data['suggestion'];
+                    // this.vocabularyDevelopment = res.data.data['vocabularyDevelopment'];
+                    this.hsk1 = res.data.data['hsk1'];
+                    this.hsk2 = res.data.data['hsk2'];
+                    this.hsk3 = res.data.data['hsk3'];
+                    this.hsk4 = res.data.data['hsk4'];
+                    this.hsk5 = res.data.data['hsk5'];
+                    this.hsk6 = res.data.data['hsk6'];
                     // 初始化评价内容
-                    this.cardContent = this.articleComment;
+                    // this.cardContent = this.articleComment;
 
                     // 在整数后加'.0'格式化成一位小数
                     this.totalScore = this.formatInt(this.totalScore);

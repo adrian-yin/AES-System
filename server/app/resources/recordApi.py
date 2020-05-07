@@ -48,6 +48,15 @@ class RecordApi(Resource):
             "articleTitle": record.article_title,
             "articleContent": record.article_content,
             "totalScore": record.total_score,
+            "vocabularyLevel": record.vocabulary_level,
+            "titleRelativity": record.title_relativity,
+            "sentenceDifficulty": record.sentence_difficulty,
+            "hsk1": record.hsk1,
+            "hsk2": record.hsk2,
+            "hsk3": record.hsk3,
+            "hsk4": record.hsk4,
+            "hsk5": record.hsk5,
+            "hsk6": record.hsk6,
             # "articleComment": record.article_comment, # origin_html
             # "problem_detail": problem_detail_dict_list
             "suggestion": record.suggestion,
@@ -55,4 +64,4 @@ class RecordApi(Resource):
         }
 
         # 返回文章内容
-        return jsonify(code = 200, message = "成功", records = data)
+        return jsonify(code = 200, message = "成功", data = data)

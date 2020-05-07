@@ -15,6 +15,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import QS from 'qs'
 
+// 引入quill
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor, /* { default global options } */)
+
 // 导入echarts
 // import echarts from 'echarts'
 // Vue.prototype.$echarts = echarts
