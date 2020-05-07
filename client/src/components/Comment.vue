@@ -89,6 +89,7 @@
   </div>
 </template>
 <script>
+/* eslint-disable */
 import { stringify } from "querystring";
 import echarts from "echarts";
 export default {
@@ -133,7 +134,7 @@ export default {
     getArticleComment (parentArticleComment) {
       this.articleComment = parentArticleComment;
     },
-    addElementEvent() {
+    addElementEvent () {
       for (var i = 0; i < this.problem_detail.length; i++) {
         var dom = document.getElementById(this.problem_detail[i].id);
         var _this = this;
@@ -164,7 +165,7 @@ export default {
             }
           }
         };
-        dom.onmouseleave = function(e) {
+        dom.onmouseleave = function (e) {
           var name = "c" + e.target.id;
           if (document.getElementsByName(name)[0] != null) {
             document
@@ -184,7 +185,7 @@ export default {
             }
           }
         };
-        dom.onclick = function(e) {
+        dom.onclick = function (e) {
           var id = e.target.id;
           var click_left = "c" + id;
           if (id != _this.show_id) {
@@ -231,7 +232,7 @@ export default {
         };
       }
     },
-    drawLine() {
+    drawLine () {
       let myChart = echarts.init(document.getElementById("myChart"));
       var option = {
         tooltip: {
@@ -275,7 +276,7 @@ export default {
       };
       myChart.setOption(option);
     },
-    getCheckEssay(id) {
+    getCheckEssay (id) {
       /*
       this.axios
         .post(
@@ -316,8 +317,8 @@ export default {
           console.log(error);
         });
         */
-	  console.log(this.articleComment.essay);
-	  console.log(this.articleComment.essay.current_html);
+    console.log(this.articleComment.essay);
+    console.log(this.articleComment.essay.current_html);
       this.contentText = this.articleComment.essay.current_html;
       this.problem_detail = this.articleComment.essay.problem_detail;
       console.log(this.problem_detail);
@@ -336,10 +337,10 @@ export default {
         this.addElementEvent();
       });
     },
-    testAmend() {
+    testAmend () {
       this.quillA.updateContents(this.data, "api");
     },
-    clickErrorType(id, e, problem_type) {
+    clickErrorType (id, e, problem_type) {
       if (this.currentType == null) {
         if (this.show_id != null) {
           document.getElementById(this.show_id).style.backgroundColor = "";
@@ -384,7 +385,7 @@ export default {
         }
       }
     },
-    showCorrectDetail(id) {
+    showCorrectDetail (id) {
       // 将之前的详情恢复
       if (this.show_id != null) {
         var problem_status = 0;
@@ -471,7 +472,7 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
           .setAttribute("class", "ignore-text-class-re-over");
       }
     },
-    hiddenHoverStyle(id, e) {
+    hiddenHoverStyle (id, e) {
       e.currentTarget.firstElementChild.firstElementChild.style.backgroundColor =
         "";
       var problem_status = 0;
@@ -501,10 +502,10 @@ console.log(e.currentTarget.firstElementChild.firstElementChild)
           .setAttribute("class", "ignore-text-class-re");
       }
     },
-    clickDetailDiv(id) {
+    clickDetailDiv (id) {
       this.show_id = null;
     },
-    getShowProblem() {
+    getShowProblem () {
       if (this.currentType == null) {
         this.showProblem = this.problem;
       } else {

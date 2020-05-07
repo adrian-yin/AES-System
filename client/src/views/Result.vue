@@ -179,7 +179,6 @@
                     this.vocabularyLevel = res.data.data['vocabularyLevel'];
                     this.titleRelativity = res.data.data['titleRelativity'];
                     this.sentenceDifficulty = res.data.data['sentenceDifficulty'];
-					console.log(this.sentenceDifficulty);
                     this.articleComment = res.data.data['articleComment'];
                     this.suggestion = res.data.data['suggestion'];
                     // this.vocabularyDevelopment = res.data.data['vocabularyDevelopment'];

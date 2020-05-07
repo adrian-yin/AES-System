@@ -21,7 +21,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-Vue.use(VueQuillEditor, /* { default global options } */)
+Vue.use(VueQuillEditor)
 
 // 导入echarts
 // import echarts from 'echarts'
