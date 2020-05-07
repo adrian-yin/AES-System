@@ -9,25 +9,25 @@ class WrongCharModel(db.Model):
     __tablename__ = "wrongchars"
     # 把Html里的每个属性都存在数据库里面
     id = db.Column(db.Integer, primary_key = True)
-    origin_text = db.Column(db.String(5), nullable = False, index = True)
-    origin_text_html = db.Column(db.String(40), nullable = False, index = True)
-    correct_text = db.Column(db.String(5), nullable = False, index = True)
-    correct_text_html = db.Column(db.String(40), nullable = False, index = True)
-    origin_start_index = db.Column(db.String(40), nullable = True, index = True)  # 不知道是什么类型，可以为null
-    origin_end_index = db.Column(db.String(40), nullable = True, index = True)
-    correct_start_index = db.Column(db.String(40), nullable = True, index = True)
-    correct_end_index = db.Column(db.String(40), nullable = True, index = True)
-    create_time = db.Column(db.String(20), nullable = False, index = True)
-    update_time = db.Column(db.String(20), nullable = False, index = True)
-    problem_type_zh = db.Column(db.String(20), nullable = False, index = True)
-    problem_type_en = db.Column(db.String(20), nullable = False, index = True)
-    paragraph_index = db.Column(db.String(10), nullable = False, index = True)
-    sentence_index = db.Column(db.String(10), nullable = False, index = True)
+    origin_text = db.Column(db.String(20), nullable = False, index = True)
+    origin_text_html = db.Column(db.String(300), nullable = False, index = True)
+    correct_text = db.Column(db.String(20), nullable = False, index = True)
+    correct_text_html = db.Column(db.String(300), nullable = False, index = True)
+    origin_start_index = db.Column(db.String(80), nullable = True, index = True)  # 不知道是什么类型，可以为null
+    origin_end_index = db.Column(db.String(80), nullable = True, index = True)
+    correct_start_index = db.Column(db.String(80), nullable = True, index = True)
+    correct_end_index = db.Column(db.String(80), nullable = True, index = True)
+    create_time = db.Column(db.String(50), nullable = False, index = True)
+    update_time = db.Column(db.String(50), nullable = False, index = True)
+    problem_type_zh = db.Column(db.String(50), nullable = False, index = True)
+    problem_type_en = db.Column(db.String(50), nullable = False, index = True)
+    paragraph_index = db.Column(db.String(30), nullable = False, index = True)
+    sentence_index = db.Column(db.String(30), nullable = False, index = True)
     problem_status = db.Column(db.Integer, nullable = False, index = True)
     corpus_id = db.Column(db.Integer, nullable = False, index = True)
-    token_array = db.Column(db.String(20), nullable = True, index = True)  # 不知道什么类型，可以为Null
-    token_str = db.Column(db.String(50), nullable = False, index = True)
-    token_strs = db.Column(db.String(100), nullable = False, index = True)
+    token_array = db.Column(db.String(50), nullable = True, index = True)  # 不知道什么类型，可以为Null
+    token_str = db.Column(db.String(200), nullable = False, index = True)
+    token_strs = db.Column(db.String(500), nullable = False, index = True)
     record_id = db.Column(db.Integer, db.ForeignKey("records.id"), nullable = False)
 
     def __repr__(self):
