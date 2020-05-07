@@ -21,7 +21,7 @@
         </el-header>
 
         <!-- 导航下方主页面-->
-            <router-view class="menu-bottom"></router-view>
+        <router-view class="menu-bottom"></router-view>
     </el-container>
 </div>
 </template>
@@ -73,20 +73,20 @@
 </script>
 
 <style lang="scss" scoped>
-    #main{
+    #main {
         position:absolute;
         width:1360px;
         height:457px;
         MARGIN-RIGHT:auto;
         MARGIN-LEFT:auto;
     }
-  el-menu-item{
-    color:#285A63;
-  }
-    .div-container{
+    el-menu-item {
+        color:#285A63;
+    }
+    .div-container {
         margin:0px 180px;
     }
-    .menu-bottom{
+    .menu-bottom {
         margin: 35px -5px;
         background-color: rgba(180, 222, 241, 0.44);
         background-image: linear-gradient(120deg, #c2e9fb 0%, #a1c4fd 100%);

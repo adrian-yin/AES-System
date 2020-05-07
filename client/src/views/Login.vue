@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="login-container">
         <el-form ref="loginForm" :model="form" :rules="rules" label-width="0" class="login-box">
             <h3 class="login-title">登录</h3>
             <el-form-item prop="userid">
@@ -172,6 +172,18 @@
 </script>
 
 <style lang="scss" scoped>
+    .login-container {
+        width: 100%;
+        height: 100%;
+        background: url(../assets/c.png) center center no-repeat;
+        background-size: 100% 100%;
+        position: fixed;
+        background-attachment: fixed;
+        overflow: hidden;
+        overflow: auto;
+        z-index: -1;
+        margin-top: -30px;
+    }
     .login-button {
         text-align: center;
     }

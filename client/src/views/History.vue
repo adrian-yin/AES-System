@@ -20,47 +20,27 @@
             </el-row>
             <el-row class="el-row2" v-if="visible2">
                 <div class="pic1">
-                    <div id="scoreLine" style="width:100%; height:300px">
+                    <div id="scoreLine" style="width: 100%; height: 300px">
                         <!-- 此处为总得分统计折线图 -->
                     </div>
                 </div>
                 <div class="suggestion1">
                     <el-col :span="24">
                         <el-card class="suggestion-card">
-                            <p><span class="sugg1">建议：</span></p>
-                            <p>{{ suggestion }}</p>
-                            </el-card>
-                    </el-col>
-                </div>
-            </el-row>
-            <el-row class="el-row2" v-if="visible2">
-                <div class="pic2">
-                        <div id="vocabularyLine" style="width:100%; height:300px">
-                            <!-- 此处为词汇水平得分统计折线图 -->
-                        </div>
-                </div>
-                <div class="suggestion2">
-                    <el-col :span="24">
-                        <el-card class="suggestion-card">
-                            <p>判断目前词汇量：<span class="number">{{ vocabulary }}</span></p>
-                            <p><span class="sugg2">建议：</span></p>
+                            <p>建议：</p>
                             <p>{{ suggestion }}</p>
                         </el-card>
                     </el-col>
                 </div>
             </el-row>
-            <el-row v-if="visible3 && visible2" class="el-row2">
-                <el-col :span="10">
-                    <div id="wrongcharChart" style="width:100%; height:300px">
-                        <!-- 此处为错别字统计柱状图 -->
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <!-- TODO: 箭头 -->
-                    <div class="arrow"><i class="el-icon-right"></i></div>
-                </el-col>
-                <el-col :span="10">
-                    <!-- TODO: 错字表 -->
+            <el-row class="el-row2" v-if="visible2">
+                <div class="pic2">
+                        <div id="vocabularyLine" style="width: 100%; height: 300px">
+                            <!-- 此处为词汇水平得分统计折线图 -->
+                        </div>
+                </div>
+                <div class="suggestion2">
+                    <el-col :span="10">
                     <el-card class="suggestion-card">
                         <el-table
                             :data="tableData"
@@ -80,6 +60,7 @@
                         </el-table>
                     </el-card>
                 </el-col>
+                </div>
             </el-row>
         </div>
     </el-main>
@@ -407,7 +388,7 @@
         background-color: ghostwhite;
         text-align: left;
         height: 300px;
-        // padding-top:5px;
+        // padding-top: 5px;
         border-radius: 10px;
         -moz-box-shadow: 2px 2px 5px #333333;
         -webkit-box-shadow: 2px 2px 5px #333333;
@@ -424,6 +405,7 @@
         -webkit-box-shadow: 1px 1px 1px #bcfcff;
         box-shadow: 5px 10px 10px #fde8d5;
     }
+
     .sugg2{
         color: #ff724c;
         font-weight: bold;
