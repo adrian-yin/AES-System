@@ -28,7 +28,7 @@ class RecordModel(db.Model):
     hsk5 = db.Column(db.Integer, nullable=False, default=0)
     hsk6 = db.Column(db.Integer, nullable=False, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    
+
     wrongchars = db.relationship('WrongCharModel', backref='record')
 
     def __repr__(self):
@@ -87,4 +87,4 @@ class RecordModel(db.Model):
     @classmethod
     def find_by_time(cls, start_time, end_time):
         return db.session.query(cls).filter(cls.user_id==g.user.id).filter(cls.commit_time.between(start_time, end_time)).all()
-    
+

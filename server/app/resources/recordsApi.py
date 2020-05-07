@@ -102,7 +102,7 @@ def correct_byWenXin(essay):
     url_check = "http://202.112.194.61:8091/gec/check"
     r = requests.post(url=url_check, headers=headers, data=data_check)
     result = r.json()
-    return result["essay"]["origin"], result["essay"]["correct"], result["essay"]["problem_detail"], result["essay"]["origin_html"]
+    return result, result["essay"]["origin"], result["essay"]["correct"], result["essay"]["problem_detail"], result["essay"]["origin_html"]
 
 
 class RecordsApi(Resource):
@@ -152,7 +152,7 @@ class RecordsApi(Resource):
         # womendewenzhang = al.correct(fenJu_WenZhang)
 
         paragragh = "|"
-        origin, corrected, problem_detail, origin_html = correct_byWenXin(paragragh.join(paragragh_WenZhang))
+        correct_result_json, origin, corrected, problem_detail, origin_html = correct_byWenXin(paragragh.join(paragragh_WenZhang))
         wrong_words = []
         for word in problem_detail:
             id = word['id']
@@ -229,6 +229,14 @@ class RecordsApi(Resource):
         hsk6 = random.random() * 15
         r = RecordModel(articleTitle, articleContent, totalScore, vocabularyLevel, titleRelativity, sentenceDifficulty, articleComment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, g.user.id)
         r.add_record()
+
+        # 将correct结果的json存为文件
+        # 以 correct_record的id 命名
+        with open('app/resources/correct_jsons/correct_' + str(r.id), 'w') as f:
+            json.dump(correct_result_json, f)
+
+        print(correct_result_json)
+
         return jsonify(code = 200, message = "成功", recordId = r.id)
 
     @auth.login_required
@@ -241,41 +249,13 @@ class RecordsApi(Resource):
         data = []
 
         for record in records:
-           problem_details_list  = WrongCharModel.query.filter_by(record_id = record.id).all()  # 每一行信息都作为List的一个元素
-           problem_detail_dict_list = []  # 当前record id 的所有 错词的dict 序列
-           for single in problem_details_list:
-               problem_detail_dict = {}
-               problem_detail_dict['id'] = single.id
-               problem_detail_dict['origin_text'] = single.origin_text
-               problem_detail_dict['origin_text_html'] = single.origin_start_index
-               problem_detail_dict['correct_text'] = single.correct_text
-               problem_detail_dict['correct_text_html'] = single.correct_text_html
-               problem_detail_dict['origin_start_index'] = single.origin_start_index
-               problem_detail_dict['origin_end_index'] = single.origin_end_index
-               problem_detail_dict['correct_start_index'] = single.correct_start_index
-               problem_detail_dict['correct_end_index'] = single.correct_end_index
-               problem_detail_dict['create_time'] = single.create_time
-               problem_detail_dict['update_time'] = single.update_time
-               problem_detail_dict['problem_type_zh'] = single.problem_type_zh
-               problem_detail_dict['problem_type_en'] = single.problem_type_en
-               problem_detail_dict['paragraph_index'] = single.paragraph_index
-               problem_detail_dict['sentence_index'] = single.sentence_index
-               problem_detail_dict['problem_status'] = single.problem_status
-               problem_detail_dict['corpus_id'] = single.corpus_id
-               problem_detail_dict['token_array'] = single.token_array
-               problem_detail_dict['token_str'] = single.token_str
-               problem_detail_dict['token_strs'] = single.token_strs
-               problem_detail_dict_list.append(problem_detail_dict)
-
-           data.append(
+            data.append(
                 {
-                "recordId": record.id, 
-                "commitTime": record.commit_time, 
-                "articleTitle": record.article_title, 
-                "articleContent": record.article_content, 
-                "totalScore": record.total_score, 
-                "articlecomment":record.article_comment, # origin_html
-                "problem_detail":problem_detail_dict_list
+                "recordId": record.id,
+                "commitTime": record.commit_time,
+                "articleTitle": record.article_title,
+                "articleContent": record.article_content,
+                "totalScore": record.total_score
                 }
             )
         # 返回文章内容
