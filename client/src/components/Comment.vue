@@ -94,6 +94,12 @@ import echarts from "echarts";
 export default {
   name: "XieZuo",
 
+  props: {
+    articleComment: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       contentText: "",
@@ -114,7 +120,6 @@ export default {
       showOneType: true,
       currentType: null,
       typeData: [],
-      articleComment: {}
     };
   },
   mounted() {

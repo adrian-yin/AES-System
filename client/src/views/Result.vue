@@ -76,7 +76,7 @@
                             <el-menu-item index="1" @click="setArticleComment">原文点评</el-menu-item>
                             <el-menu-item index="2" @click="setVocabularyDevelopment">词汇拓展</el-menu-item>
                     </el-menu>
-                    <component-comment ref="comment" class="box-card" v-if="boxType === comment"></component-comment>
+                    <component-comment :articleComment="articleComment" class="box-card" v-if="boxType === comment"></component-comment>
                     <component-vocabulary class="box-card" v-else-if="boxType === vocabulary"></component-vocabulary>
                 </div>
             </el-col>
@@ -200,9 +200,6 @@
                     // 绘制图表
                     this.drawVocabularyPie();
                     return true;
-
-                    // 向子组件Comment传递数据
-                    this.$refs.comment.getArticleComment(this.articleComment);
                 } else {
                     return false;
                 }
