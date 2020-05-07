@@ -33,10 +33,9 @@ class WrongCharModel(db.Model):
     def __repr__(self):
         return '<WrongChar: %s>' % self.id
 
-    def __init__(self, id, origin_text, origin_text_html, correct_text, correct_text_html, origin_start_index , origin_end_index , correct_start_index , correct_end_index , create_time
+    def __init__(self, origin_text, origin_text_html, correct_text, correct_text_html, origin_start_index , origin_end_index , correct_start_index , correct_end_index , create_time
     , update_time , problem_type_zh , problem_type_en , paragraph_index , sentence_index , problem_status , corpus_id , token_array , token_str, token_strs
     , record_id):
-        self.id = id
         self.origin_text = origin_text
         self.origin_text_html = origin_text_html
         self.correct_text = correct_text
