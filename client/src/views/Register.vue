@@ -1,9 +1,16 @@
 <template>
-    <div class="reg-container">
+    <div class="register-container">
         <el-form ref="registerForm" :model="form" status-icon :rules="rules" label-width="0" class="register-box">
             <h3 class="register-title">注册</h3>
             <el-form-item prop="email">
                 <el-input type="text" placeholder="请填写邮箱地址" v-model="form.email"></el-input>
+            </el-form-item>
+            <el-form-item prop="verificationCode">
+                <el-input type="text" placeholder="请输入验证码" v-model="form.verificationCode" style="width: 60%; float:left"></el-input>
+                <el-button icon="el-icon-mobile-phone" @click="send" style="width: 35%" type="success" :disabled="disabled=!show">
+                    <span v-show="show">获取验证码</span>
+                     <span v-show="!show" class="count">{{count}} s</span>
+                </el-button>
             </el-form-item>
             <el-form-item prop="username">
                 <el-input type="text" placeholder="请设置用户名" v-model="form.username"></el-input>
@@ -64,11 +71,22 @@
                 <el-button @click="backToLogin">立即返回</el-button>
             </span>
         </el-dialog>
+
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible4"
+            width=30%>
+            <span>验证码不正确</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="dialogVisible4 = false">确定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    import https from '../api/https.js'
+    import https from '../api/https.js';
+    const TIME_COUNT = 60; // 更改倒计时时间
 
     export default {
         name: 'Register',
@@ -89,17 +107,22 @@
                 }
             };
             return {
+                show: true, // 初始启用按钮
+                count: '', // 初始化次数
+                timer: null,
                 form: {
                     email: '',
                     username: '',
                     password: '',
                     confirmPassword: '',
-                    name: ''
+                    name: '',
+                    verificationCode: ''
                 },
                 dialogVisible: false,
                 dialogVisible1: false,
                 dialogVisible2: false,
                 dialogVisible3: false,
+                dialogVisible4: false,
                 countMessage: '',
                 interval: null,
                 rules: {
@@ -122,6 +145,9 @@
                     ],
                     name: [
                         {min: 0, max: 20, message: '昵称长度过长', trigger: ['blur', 'change']}
+                    ],
+                    verificationCode: [
+                        {required: true, message: '请输入验证码', trigger: 'blur'}
                     ]
                 }
             }
@@ -132,11 +158,13 @@
                 var username = this.form['username'];
                 var password = this.form['password'];
                 var name = this.form['name'];
+                var verificationCode = this.form['verificationCode'];
                 var registerInfo = {
                     'email': email,
                     'username': username,
                     'password': password,
-                    'name': name
+                    'name': name,
+                    'verificationCode': verificationCode
                     };
 
                 this.$refs[formName].validate((valid) => {
@@ -167,6 +195,10 @@
                                 } else if (res.data['wrongType'] === 'username') {
                                     this.dialogVisible1 = true;
                                     return false;
+                                // 验证码不正确显示dialog4
+                                } else if (res.data['wrongType'] === 'verificationCode') {
+                                    this.dialogVisible4 = true;
+                                    return false;
                                 }
                             }
                         });
@@ -182,19 +214,45 @@
                     window.clearInterval(this.interval);
                 }
                 this.$router.push('/login');
+            },
+            send () {
+                if (!this.timer) {
+                    this.count = TIME_COUNT;
+                    this.show = false;
+                    this.timer = setInterval(() => {
+                        if (this.count > 0 && this.count <= TIME_COUNT) {
+                            this.count--;
+                        } else {
+                            this.show = true;
+                            clearInterval(this.timer); // 清除定时器
+                            this.timer = null;
+                        }
+                    }, 1000)
+                }
+                https.fetchPost('confirm', {'email': this.form['email']}).then((res) => {
+                    if (res.data['code'] === 200) {
+                        return true;
+                    } else {
+                        if (res.data['wrongType'] === 'email') {
+                                this.dialogVisible2 = true;
+                        }
+                        return false;
+                    }
+                })
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .reg-container {
+    .register-container {
         width: 100%;
         height: 100%;
         background: url(../assets/c.png) center center no-repeat;
         background-size: 100% 100%;
         position: fixed;
         background-attachment: fixed;
+        overflow: hidden;
         overflow: auto;
         z-index: -1;
         margin-top: -30px;
@@ -202,8 +260,8 @@
     .register-box {
         border: 1px solid #DCDFE6;
         width: 350px;
-        margin: 142px auto;
-        padding: 25px 35px 30px 35px;
+        margin: 150px auto;
+        padding: 30px 35px 40px 35px;
         border-radius: 5px;
         -webkit-border-radius: 5px;
         box-shadow: 0 0 25px #909399;
