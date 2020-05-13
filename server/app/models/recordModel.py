@@ -83,7 +83,7 @@ class RecordModel(db.Model):
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
 
-    # 找到当前用户时间范围内记录
+    # 找到当前用户时间范围记录
     @classmethod
     def find_by_time(cls, start_time, end_time):
         return db.session.query(cls).filter(cls.user_id==g.user.id).filter(cls.commit_time.between(start_time, end_time)).all()

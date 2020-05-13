@@ -182,7 +182,6 @@
                     this.articleComment = res.data.data['articleComment'];
                     this.suggestion = res.data.data['suggestion'];
                     console.log(this.suggestion);
-                    // this.vocabularyDevelopment = res.data.data['vocabularyDevelopment'];
                     this.hsk1 = res.data.data['hsk1'];
                     this.hsk2 = res.data.data['hsk2'];
                     this.hsk3 = res.data.data['hsk3'];

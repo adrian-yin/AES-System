@@ -51,7 +51,7 @@
                 sessionStorage.removeItem('token');
                 this.$router.push('/login');
             },
-            // 无论在哪个页面，后退都返回登录页面
+            // 无论在哪个页面，后退都返回登录页
             handleselect () {
                 this.$router.push('/login')
             }

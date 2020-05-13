@@ -175,7 +175,6 @@ class RecordsApi(Resource):
             token_str = word['token_str']
             token_strs = word['token_strs']
             wrong_words.append(origin_text)
-            # print("3")
 
 # ***************************************************************************************************************
         # 查字典

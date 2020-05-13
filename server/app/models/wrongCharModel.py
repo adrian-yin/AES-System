@@ -7,7 +7,7 @@ from . import *
 class WrongCharModel(db.Model):
 
     __tablename__ = "wrongchars"
-    # 把Html里的每个属性都存在数据库里面
+    # 把html里的每个属性都存在数据库里面
     id = db.Column(db.Integer, primary_key = True)
     origin_text = db.Column(db.String(20), nullable = False, index = True)
     origin_text_html = db.Column(db.String(300), nullable = False, index = True)

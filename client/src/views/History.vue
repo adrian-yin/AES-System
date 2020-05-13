@@ -118,7 +118,7 @@
                 timeValue: ''
             }
         },
-        // 初始化页面显示全部记录的数据
+        // 初始化页面显示所有记录的数据
         mounted () {
             https.fetchGet('history').then((res) => {
                 if (res.data['code'] === 200) {

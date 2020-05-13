@@ -63,5 +63,4 @@ class RecordApi(Resource):
             "articleComment": articleComment
         }
 
-        # 返回文章内容
         return jsonify(code = 200, message = "成功", data = data)
