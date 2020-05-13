@@ -101,11 +101,11 @@
         font-size: 21px;
         color: #475164;
         background-color: rgba(182, 208, 251, 0.98);
-        // 边框
-        // border: solid 1px rgba(102, 146, 191, 0.68);
-        // 边角弧度
+        /* 边框 */
+        /* border: solid 1px rgba(102, 146, 191, 0.68); */
+        /* 边角弧度 */
         border-radius: 10px;
-        // 阴影
+        /* 阴影 */
         -moz-box-shadow: 1px 1px 1px #59bbbb;
         -webkit-box-shadow: 1px 1px 1px #bcfcff;
         box-shadow: 5px -3px 10px #b6d0fb;
@@ -114,9 +114,9 @@
         text-align: left;
     }
     .card-box {
-        // 边角弧度*/
+        /* 边角弧度*/
         border-radius: 10px;
-        // 阴影
+        /* 阴影 */
         -moz-box-shadow: 2px 2px 5px #333333;
         -webkit-box-shadow: 2px 2px 5px #333333;
         box-shadow: 7px 15px 30px #285a63;
@@ -146,11 +146,11 @@
         position: absolute;
         right: 50px;
         background-color: rgba(253, 232, 213, 0.98);
-          // 边框
-        // border: solid 1px rgba(102, 146, 191, 0.68);
-        // 边角弧度
+        /* 边框 */
+        /* border: solid 1px rgba(102, 146, 191, 0.68); */
+        /* 边角弧度 */
         border-radius: 10px;
-        // 阴影
+        /* 阴影 */
         -moz-box-shadow: 1px 1px 1px #59bbbb;
         -webkit-box-shadow: 1px 1px 1px #bcfcff;
         box-shadow: 5px 10px 10px #fde8d5;
@@ -172,7 +172,7 @@
         line-height: 80px;
         font-size: 40px;
         font-weight: bold;
-        border-radius: 50%;  // 圆角百分比
+        border-radius: 50%;  /* 圆角百分比 */
         float: left;
         margin-left: 90px;
         margin-top: 20px;

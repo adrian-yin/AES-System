@@ -75,7 +75,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .el-icon-s-home{
   font-size:20px;
 

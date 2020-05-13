@@ -37,7 +37,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 .container {
     background-color: #f9f9fb;
     min-width: 600px;
@@ -104,7 +104,7 @@
     white-space: pre-wrap;
 }
 .word-revise-div {
-    // display: flex;
+    /* display: flex; */
     margin-top: 20px;
 }
 .right-icon-1 {
