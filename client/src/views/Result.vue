@@ -58,7 +58,7 @@
                             </el-rate>
                         </div>
                         <div class="each-score-content">
-                            <span class="each-score-title">错误得分</span>
+                            <span class="each-score-title">表述准确</span>
                             <el-rate
                                 v-model="incorrectScore"
                                 disabled
