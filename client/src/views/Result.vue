@@ -57,6 +57,16 @@
                                 score-template="{value}">
                             </el-rate>
                         </div>
+                        <div class="each-score-content">
+                            <span class="each-score-title">错误得分</span>
+                            <el-rate
+                                v-model="incorrectScore"
+                                disabled
+                                show-score
+                                text-color="ffba00"
+                                score-template="{value}">
+                            </el-rate>
+                        </div>
                     </div>
                 </el-col>
             </el-row>
@@ -178,6 +188,7 @@
                     this.totalScore = res.data.data['totalScore'];
                     this.vocabularyLevel = res.data.data['vocabularyLevel'];
                     this.titleRelativity = res.data.data['titleRelativity'];
+                    this.incorrectScore = res.data.data['incorrectScore'];
                     this.sentenceDifficulty = res.data.data['sentenceDifficulty'];
                     this.articleComment = res.data.data['articleComment'];
                     this.suggestion = res.data.data['suggestion'];

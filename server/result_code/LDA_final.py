@@ -5,10 +5,10 @@ import numpy as np
 import math
 from gensim import corpora, models
 from gensim.models import KeyedVectors
-tfidf_model = models.TfidfModel.load("tfidf.model")
-LDA_model = models.LdaModel.load("LDA.model")
-dictionary = corpora.Dictionary.load('dictionary.dict')
-wordtopic_dic = np.load('wordtopic_dic.npy', allow_pickle=True).item()
+tfidf_model = models.TfidfModel.load("result_code/tfidf.model")
+LDA_model = models.LdaModel.load("result_code/LDA.model")
+dictionary = corpora.Dictionary.load('result_code/dictionary.dict')
+wordtopic_dic = np.load('result_code/wordtopic_dic.npy', allow_pickle=True).item()
 #  排序函数，用于topK关键词的按值排序
 
 
@@ -80,9 +80,9 @@ def similarity(vector1, vector2):
 def get_stopword_list():
     # 停用词表存储路径，每一行为一个词，按行读取进行加载
     # 进行编码转换确保匹配准确率
-    stop_word_path = 'china_stop_word.txt'
+    stop_word_path = 'result_code/china_stop_word.txt'
     stopword_list = [sw.replace('\n', '')
-                     for sw in open(stop_word_path).readlines()]
+                     for sw in open(stop_word_path, encoding='GBK').readlines()]
     return stopword_list
 
 # 分词方法，调用结巴接口
@@ -140,7 +140,7 @@ def LDA(title, text):
     filter_list = word_filter(seg_list, pos)
     topic_words = get_simword(filter_list)
     print(topic_words)
-    FASTTEXTFILE = "selected.vecs"  # 把这个换成另外一个比较大的vecs
+    FASTTEXTFILE = "result_code/selected.vecs"  # 把这个换成另外一个比较大的vecs
     FASTTEXT = KeyedVectors.load_word2vec_format(FASTTEXTFILE, limit=500000)
     title_words = word_filter(list(jieba.cut(title)))
     print(title_words)

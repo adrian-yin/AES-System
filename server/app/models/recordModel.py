@@ -17,6 +17,7 @@ class RecordModel(db.Model):
     total_score = db.Column(db.Float, nullable=False, default=0)
     vocabulary_level = db.Column(db.Float, nullable=False, default=0)
     title_relativity = db.Column(db.Float, nullable=False, default=0)
+    incorrect_score = db.Column(db.Float, nullable=False, default=0)
     sentence_difficulty = db.Column(db.Float, nullable=False, default=0)
     article_comment = db.Column(db.String(8000), default='')
     suggestion = db.Column(db.String(8000), default='')
@@ -34,12 +35,13 @@ class RecordModel(db.Model):
     def __repr__(self):
         return '<Record %s>' % self.id
 
-    def __init__(self, article_title, article_content, total_score, vocabulary_level, title_relativity, sentence_difficulty, article_comment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, user_id):
+    def __init__(self, article_title, article_content, total_score, vocabulary_level, title_relativity, incorrect_score, sentence_difficulty, article_comment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, user_id):
         self.article_title = article_title
         self.article_content = article_content
         self.total_score = total_score
         self.vocabulary_level = vocabulary_level
         self.title_relativity = title_relativity
+        self.incorrect_score = incorrect_score
         self.sentence_difficulty = sentence_difficulty
         self.article_comment = article_comment
         self.suggestion = suggestion
@@ -67,6 +69,7 @@ class RecordModel(db.Model):
             totalScore=self.total_score,
             vocabularyLevel=self.vocabulary_level,
             titleRelativity = self.title_relativity,
+            incorrectScore = self.incorrect_score,
             sentenceDifficulty=self.sentence_difficulty,
             articleComment=self.article_comment,
             suggestion=self.suggestion,

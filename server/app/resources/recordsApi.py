@@ -120,6 +120,11 @@ class RecordsApi(Resource):
 
 
 # ******计算各种得分********
+        from result_code.score_forTrain_old import wenmind_score
+        from result_code.LDA_final import LDA
+        import math
+        import time
+
         # TODO 修改路径
         dict_word_level_path = r"app/resources/algorithm/dict_word_level.json"
 
@@ -311,6 +316,7 @@ class RecordsApi(Resource):
         totalScore = round(random.random() * 50 + 50, 1)
         vocabularyLevel = round(result["word_trueScore"], 1)
         titleRelativity = round(result["LDA_trueSim"], 1)
+        incorrectScore = round(result["incorrect_trueScore"], 1)
         sentenceDifficulty =  round(result["juFa_trueScore"], 1)
         articleComment  = origin_html
         # articleComment = huanhang.join(original_wenzhang)# 带有标记的原文章放到原文点评（zhy）
@@ -322,7 +328,7 @@ class RecordsApi(Resource):
         hsk4 = random.random() * 15
         hsk5 = random.random() * 15
         hsk6 = random.random() * 15
-        r = RecordModel(articleTitle, articleContent, totalScore, vocabularyLevel, titleRelativity, sentenceDifficulty, articleComment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, g.user.id)
+        r = RecordModel(articleTitle, articleContent, totalScore, vocabularyLevel, titleRelativity, incorrectScore, sentenceDifficulty, articleComment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, g.user.id)
         r.add_record()
             
         for word in problem_detail:

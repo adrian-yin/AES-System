@@ -50,6 +50,7 @@ class RecordApi(Resource):
             "totalScore": record.total_score,
             "vocabularyLevel": record.vocabulary_level,
             "titleRelativity": record.title_relativity,
+            "incorrectScore": record.incorrect_score,
             "sentenceDifficulty": record.sentence_difficulty,
             "hsk1": record.hsk1,
             "hsk2": record.hsk2,
