@@ -120,6 +120,11 @@ class RecordsApi(Resource):
 
 
 # ******计算各种得分********
+        from result_code.score_forTrain_old import wenmind_score
+        from result_code.LDA_final import LDA
+        import math
+        import time
+
         # TODO 修改路径
         dict_word_level_path = r"app/resources/algorithm/dict_word_level.json"
 
