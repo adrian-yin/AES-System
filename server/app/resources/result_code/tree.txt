@@ -1,0 +1,590 @@
+人们所说的代沟是两代人之间在行为方式、生活态度以及价值观念等方面存在的差异。
+(ROOT
+  (IP
+    (NP
+      (CP
+        (IP
+          (NP (NN 人们))
+          (VP (MSP 所)
+            (VP (VV 说))))
+        (DEC 的))
+      (NP (NN 代沟)))
+    (VP (VC 是)
+      (NP
+        (CP
+          (IP
+            (LCP
+              (NP
+                (QP (CD 两)
+                  (CLP (M 代)))
+                (NP (NN 人)))
+              (LC 之间))
+            (VP
+              (PP (P 在)
+                (NP
+                  (NP (NN 行为) (NN 方式) (PU 、) (NN 生活) (NN 态度)
+                    (CC 以及)
+                    (NN 价值) (NN 观念) (ETC 等))
+                  (NP (NN 方面))))
+              (VP (VV 存在))))
+          (DEC 的))
+        (NP (NN 差异))))
+    (PU 。)))
+树高：11
+连接词密度：0.08
+句长：25
+我的很多朋友常常感叹地说“我的父母不能理解我！”，现在代沟是这么不可避免的我们社会的问题了。
+(ROOT
+  (IP
+    (IP
+      (NP
+        (NP (NN 我的))
+        (QP (CD 很多))
+        (NP (NN 朋友)))
+      (VP
+        (DVP
+          (VP
+            (ADVP (AD 常常))
+            (VP (VV 感叹)))
+          (DEV 地))
+        (VP (VV 说) (PU “)
+          (IP
+            (NP
+              (DNP
+                (NP (PN 我))
+                (DEG 的))
+              (NP (NN 父母)))
+            (VP
+              (ADVP (AD 不))
+              (VP (VV 能)
+                (VP (VV 理解)
+                  (NP (PN 我))))))))
+      (PU ！) (PU ”))
+    (PU ，)
+    (CP
+      (IP
+        (NP (NT 现在))
+        (NP (NN 代沟))
+        (VP (VC 是)
+          (NP
+            (DNP
+              (NP
+                (CP
+                  (IP
+                    (VP
+                      (ADVP (AD 这么))
+                      (VP (VV 不可避免))))
+                  (DEC 的))
+                (NP (PN 我们))
+                (NP (NN 社会)))
+              (DEG 的))
+            (NP (NN 问题)))))
+      (SP 了))
+    (PU 。)))
+树高：13
+连接词密度：1
+句长：31
+那怎样才能解决这代沟问题呢？
+(ROOT
+  (CP
+    (IP
+      (VP
+        (ADVP (AD 那))
+        (VP
+          (ADVP (AD 怎样))
+          (ADVP (AD 才))
+          (VP (VV 能)
+            (VP (VV 解决)
+              (NP
+                (DP (DT 这))
+                (NP (NN 代沟) (NN 问题))))))))
+    (SP 呢) (PU ？)))
+树高：10
+连接词密度：1
+句长：11
+这应该要双方面的努力的，现在我要从两个方面来谈这难题的解决方案。
+(ROOT
+  (IP
+    (CP
+      (IP
+        (NP (PN 这))
+        (VP (VV 应该)
+          (VP (VV 要)
+            (NP
+              (DNP
+                (ADJP (JJ 双方面))
+                (DEG 的))
+              (NP (NN 努力))))))
+      (SP 的))
+    (PU ，)
+    (IP
+      (NP (NT 现在))
+      (NP (PN 我))
+      (VP (VV 要)
+        (VP
+          (PP (P 从)
+            (NP
+              (QP (CD 两)
+                (CLP (M 个)))
+              (NP (NN 方面))))
+          (VP (MSP 来)
+            (VP (VV 谈)
+              (NP
+                (DNP
+                  (NP
+                    (DP (DT 这))
+                    (NP (NN 难题)))
+                  (DEG 的))
+                (NP (NN 解决) (NN 方案))))))))
+    (PU 。)))
+树高：12
+连接词密度：1
+句长：24
+第一，是对话。现代的都很忙。
+(ROOT
+  (IP
+    (IP
+      (QP (OD 第一))
+      (PU ，)
+      (VP (VC 是)
+        (NP (NN 对话))))
+    (PU 。)
+    (IP
+      (DNP
+        (ADJP (JJ 现代))
+        (DEG 的))
+      (VP
+        (ADVP (AD 都))
+        (ADVP (AD 很))
+        (VP (VA 忙))))
+    (PU 。)))
+树高：6
+连接词密度：1
+句长：10
+父母都有工作，所以他们没有跟孩子们沟通的时间。
+(ROOT
+  (IP
+    (IP
+      (NP (NN 父母))
+      (VP
+        (ADVP (AD 都))
+        (VP (VE 有)
+          (NP (NN 工作)))))
+    (PU ，)
+    (IP
+      (VP
+        (NP
+          (CP
+            (IP
+              (ADVP (AD 所以))
+              (NP (PN 他们))
+              (VP
+                (ADVP (AD 没有))
+                (PP (P 跟)
+                  (NP (NN 孩子们)))
+                (VP (VV 沟通))))
+            (DEC 的))
+          (NP (NN 时间)))))
+    (PU 。)))
+树高：11
+连接词密度：1
+句长：15
+孩子们也是如此，每天上学，上补习班，真忙得不得了。
+(ROOT
+  (IP
+    (IP
+      (NP (NN 孩子们))
+      (VP
+        (ADVP (AD 也))
+        (VP (VC 是)
+          (NP (VA 如此)))))
+    (PU ，)
+    (IP
+      (IP
+        (VP
+          (DP (DT 每)
+            (CLP (M 天)))
+          (VP (VV 上学))))
+      (PU ，)
+      (VP
+        (ADVP (AD 上))
+        (VP (VV 补习)
+          (NP (NN 班)))))
+    (PU ，)
+    (IP
+      (VP
+        (ADVP (AD 真))
+        (VP (VA 忙) (DER 得)
+          (VP (VV 不得了)))))
+    (PU 。)))
+树高：8
+连接词密度：1
+句长：16
+所以他们也没有跟父母对话的时间。
+(ROOT
+  (NP
+    (ADVP (AD 所以))
+    (NP
+      (CP
+        (IP
+          (NP (PN 他们))
+          (VP
+            (ADVP (AD 也))
+            (ADVP (AD 没有))
+            (PP (P 跟)
+              (NP (NN 父母)))
+            (VP (VV 对话))))
+        (DEC 的))
+      (NP (NN 时间)))
+    (PU 。)))
+树高：9
+连接词密度：1
+句长：10
+这样的话，双方都无法接受对方的想法。
+(ROOT
+  (IP
+    (IP
+      (CP
+        (IP
+          (VP (VA 这样)))
+        (SP 的话))
+      (PU ，)
+      (NP (PN 双方))
+      (VP
+        (ADVP (AD 都))
+        (ADVP (AD 无法))
+        (VP (VV 接受)
+          (NP
+            (DNP
+              (NP (PN 对方))
+              (DEG 的))
+            (NP (NN 想法))))))
+    (PU 。)))
+树高：9
+连接词密度：1
+句长：12
+所以很自然地发生代沟问题。
+(ROOT
+  (IP
+    (ADVP (AD 所以))
+    (VP
+      (DVP
+        (VP
+          (ADVP (AD 很))
+          (VP (VA 自然)))
+        (DEV 地))
+      (VP (VV 发生)
+        (NP (NN 代沟) (NN 问题))))
+    (PU 。)))
+树高：7
+连接词密度：1
+句长：8
+如果，很忙的生活中抽出时间，父母和子女谈谈各种各样的事，肯定更会理解双方的想法。
+(ROOT
+  (IP
+    (IP
+      (CP (CS 如果)
+        (IP (PU ，)
+          (LCP
+            (NP
+              (CP
+                (IP
+                  (VP
+                    (ADVP (AD 很))
+                    (VP (VA 忙))))
+                (DEC 的))
+              (NP (NN 生活)))
+            (LC 中))
+          (VP (VV 抽出)
+            (NP (NN 时间)))))
+      (PU ，)
+      (NP (NN 父母)
+        (CC 和)
+        (NN 子女))
+      (VP
+        (VP (VV 谈谈)
+          (NP
+            (DNP
+              (ADJP (JJ 各种各样))
+              (DEG 的))
+            (NP (NN 事))))
+        (PU ，)
+        (VP
+          (ADVP (AD 肯定))
+          (ADVP (AD 更))
+          (VP (VV 会)
+            (VP (VV 理解)
+              (NP
+                (DNP
+                  (NP (PN 双方))
+                  (DEG 的))
+                (NP (NN 想法))))))))
+    (PU 。)))
+树高：12
+连接词密度：2
+句长：27
+所以对话是为了解决代沟问题的很好方法。
+(ROOT
+  (IP
+    (ADVP (AD 所以))
+    (NP (NN 对话))
+    (VP (VC 是)
+      (PP (P 为了)
+        (NP
+          (CP
+            (IP
+              (VP (VV 解决)
+                (NP (NN 代沟) (NN 问题))))
+            (DEC 的))
+          (CP
+            (IP
+              (VP
+                (ADVP (AD 很))
+                (VP (JJ 好)))))
+          (NP (NN 方法)))))
+    (PU 。)))
+树高：10
+连接词密度：1
+句长：11
+第二，要在对方的立场上想。
+(ROOT
+  (IP
+    (LST (OD 第二))
+    (PU ，)
+    (VP (VV 要)
+      (VP
+        (PP (P 在)
+          (LCP
+            (NP
+              (DNP
+                (NP (PN 对方))
+                (DEG 的))
+              (NP (NN 立场)))
+            (LC 上)))
+        (VP (VV 想))))
+    (PU 。)))
+树高：10
+连接词密度：1
+句长：9
+我们都只能自己的情况，然后主张自己的意见。
+(ROOT
+  (IP
+    (NP (PN 我们))
+    (VP
+      (ADVP (AD 都))
+      (ADVP (AD 只))
+      (VP (VV 能)
+        (VP
+          (NP
+            (DNP
+              (NP (PN 自己))
+              (DEG 的))
+            (NP (NN 情况)))
+          (PU ，)
+          (ADVP (AD 然后))
+          (VP (VV 主张)
+            (NP
+              (DNP
+                (NP (PN 自己))
+                (DEG 的))
+              (NP (NN 意见)))))))
+    (PU 。)))
+树高：10
+连接词密度：1
+句长：14
+这样的话无法理解对方，所以再发生代沟的。
+(ROOT
+  (CP
+    (IP
+      (VP
+        (VP
+          (CP
+            (IP
+              (VP (VA 这样)))
+            (SP 的话))
+          (ADVP (AD 无法))
+          (VP (VV 理解)
+            (NP (PN 对方))))
+        (PU ，)
+        (VP
+          (ADVP (AD 所以))
+          (ADVP (AD 再))
+          (VP (VV 发生)
+            (NP (NN 代沟))))))
+    (SP 的) (PU 。)))
+树高：9
+连接词密度：1
+句长：12
+我们一定要换角度来想，当对方的位置来想的话，肯定能理解对方。
+(ROOT
+  (IP
+    (VP
+      (CP
+        (IP
+          (NP (PN 我们))
+          (VP
+            (VP
+              (ADVP (AD 一定))
+              (VP (VV 要)
+                (VP
+                  (VP (VV 换)
+                    (NP (NN 角度)))
+                  (VP (MSP 来)
+                    (VP (VV 想))))))
+            (PU ，)
+            (VP
+              (PP (P 当)
+                (NP
+                  (DNP
+                    (NP (PN 对方))
+                    (DEG 的))
+                  (NP (NN 位置))))
+              (VP (MSP 来)
+                (VP (VV 想))))))
+        (SP 的话))
+      (PU ，)
+      (ADVP (AD 肯定))
+      (VP (VV 能)
+        (VP (VV 理解)
+          (NP (PN 对方)))))
+    (PU 。)))
+树高：12
+连接词密度：1
+句长：19
+所以在对方的立场来想也是很重要的。
+(ROOT
+  (IP
+    (ADVP (AD 所以))
+    (IP
+      (VP
+        (PP (P 在)
+          (NP
+            (DNP
+              (NP (PN 对方))
+              (DEG 的))
+            (NP (NN 立场))))
+        (VP (MSP 来)
+          (VP (VV 想)))))
+    (VP
+      (ADVP (AD 也))
+      (VP (VC 是)
+        (NP
+          (CP
+            (IP
+              (VP
+                (ADVP (AD 很))
+                (VP (VA 重要))))
+            (SP 的)))))
+    (PU 。)))
+树高：10
+连接词密度：1
+句长：12
+随着社会经济的发展，社会文化变的速度也越来越快了。
+(ROOT
+  (CP
+    (IP
+      (PP (P 随着)
+        (NP
+          (DNP
+            (NP (NN 社会) (NN 经济))
+            (DEG 的))
+          (NP (NN 发展))))
+      (PU ，)
+      (NP (NN 社会) (NN 文化))
+      (VP
+        (VP (VV 变的)
+          (NP (NN 速度)))
+        (VP
+          (ADVP (AD 也))
+          (ADVP (AD 越来越))
+          (VP (VA 快)))))
+    (SP 了) (PU 。)))
+树高：8
+连接词密度：1
+句长：16
+不同的文化中成长的两代人常常不能理解对方。
+(ROOT
+  (IP
+    (NP
+      (CP
+        (IP
+          (VP
+            (LCP
+              (NP
+                (DNP
+                  (ADJP (VA 不同))
+                  (DEC 的))
+                (NP (NN 文化)))
+              (LC 中))
+            (VP (VV 成长))))
+        (DEC 的))
+      (QP (CD 两)
+        (CLP (M 代)))
+      (NP (NN 人)))
+    (VP
+      (ADVP (AD 常常))
+      (ADVP (AD 不))
+      (VP (VV 能)
+        (VP (VV 理解)
+          (NP (PN 对方)))))
+    (PU 。)))
+树高：11
+连接词密度：1
+句长：14
+可是双方的努力下，多点对话，换角度来想想的话，这难的代沟问题肯定能解决。
+(ROOT
+  (IP
+    (IP
+      (ADVP (AD 可是))
+      (CP
+        (IP
+          (LCP
+            (NP
+              (DNP
+                (NP (PN 双方))
+                (DEG 的))
+              (NP (NN 努力)))
+            (LC 下))
+          (PU ，)
+          (NP
+            (QP (CD 多)
+              (CLP (M 点)))
+            (NP (NN 对话)))
+          (PU ，)
+          (VP
+            (VP (VV 换)
+              (NP (NN 角度)))
+            (VP (MSP 来)
+              (VP (VV 想想)))))
+        (SP 的话))
+      (PU ，)
+      (NP
+        (DNP
+          (NP
+            (DP (DT 这))
+            (NP (NN 难)))
+          (DEG 的))
+        (NP (NN 代沟) (NN 问题)))
+      (VP
+        (ADVP (AD 肯定))
+        (VP (VV 能)
+          (VP (VV 解决)))))
+    (PU 。)))
+树高：10
+连接词密度：1
+句长：26
+（108L)
+(ROOT
+  (FRAG (PU （)
+    (NP (NT 108L))
+    (PU ))))
+树高：4
+连接词密度：1
+句长：2
+句法树裸分：9.619047619047619
+连接裸分：1.0952380952380953
+句长裸分：15.428571428571429
+句法树真实分：3.6766549822708883
+连接真实分：3.2747086327818566
+句长真实分：3.2361035788992925
+句法真实分：3.3958223979840128

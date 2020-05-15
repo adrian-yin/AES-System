@@ -118,6 +118,111 @@ class RecordsApi(Resource):
         articleTitle = req.get("title")
         articleContent = req.get("article")# 拿到数据
 
+
+# ******计算各种得分********
+        # TODO 修改路径
+        dict_word_level_path = r"app/resources/algorithm/dict_word_level.json"
+
+        # TODO 这里初始化了一个作文评分的类，我想可以把这个类初始化在init里
+        wenmind = wenmind_score(dict_word_level_path)
+
+        print("重新计时")
+
+        t1 = time.time()
+        fenJu_WenZhang = []
+        fenCi_WenZhang = []
+        paragragh_WenZhang = []
+
+        # juFa_WenZhang=[]
+        corrected_wenzhang = []
+
+        essay = articleContent
+        # 对文章进行分句
+        fenCi_WenZhang = wenmind.ssplit_tokenize(essay)
+
+        print("运行时间")
+        print(time.time()-t1)
+
+        word_score, fenbu, totalWord_num = wenmind.word(
+            fenCi_WenZhang)
+        # # 求词汇水平的打分，是对这篇文章之中不重复的词，找出其hsk难度，求平均
+        # # 并给出词汇难度的分布
+        print("词汇裸分："+str(word_score))
+        word_trueScore = math.pow(word_score / 6, 0.24) * 5
+        print("词汇真实分："+str(word_trueScore))
+
+        print("运行时间")
+        print(time.time() - t1)
+
+        # 获得改错
+        paragragh = "|"
+        origin, corrected, problem_detail, origin_html = wenmind.correct_byWenXin(
+            paragragh.join(essay.split("\n")))
+        huanhang = "\n"
+        print(origin_html)
+        print("错误个数")
+        # corrected = str(huanhang.join(corrected_wenzhang))
+        incorrect_num = len(origin_html.split("</span>")) - 1
+        print("错误个数" + str(incorrect_num))
+        incorrect_possibility = incorrect_num / totalWord_num
+        print("错词率：" + str(incorrect_possibility))
+
+        incorrect_trueScore = (
+            1 - math.pow(incorrect_possibility, 0.33)) * 5
+        print("错误真实分：" + str(incorrect_trueScore))
+
+        print("运行时间")
+        print(time.time() - t1)
+
+        # 获得句法打分
+        juFaTree_Score, conjunction_score, avg_len = wenmind.juFa(
+            fenCi_WenZhang)
+        print("句法树裸分："+str(juFaTree_Score))
+        conjunction_score = conjunction_score / avg_len
+        print("连接裸分："+str(conjunction_score))
+        print("句长裸分："+str(avg_len))
+
+        if(juFaTree_Score > 20):
+            juFaTree_Score = 20
+        if(avg_len > 28):
+            avg_len = 28
+
+        juFaTree_trueScore = math.pow(juFaTree_Score / 20, 0.42) * 5
+        conjunction_trueScore = math.pow(conjunction_score, 0.17) * 5
+        avg_truelen = math.pow(avg_len / 28, 0.73) * 5
+
+        print("句法树真实分："+str(juFaTree_trueScore))
+        print("连接真实分："+str(conjunction_trueScore))
+        print("句长真实分："+str(avg_truelen))
+
+        juFa_trueScore = (juFaTree_trueScore +
+                        conjunction_trueScore + avg_truelen) / 3
+        print("句法真实分："+str(juFa_trueScore))
+
+        print("运行时间")
+        print(time.time() - t1)
+
+        LDA_sim = LDA(articleTitle, essay)
+        print(LDA_sim)
+
+        print("运行时间")
+        print(time.time() - t1)
+
+        result = {
+            "essay": essay,
+            "articleTitle": articleTitle,
+            "word_score": word_score,
+            "LDA_sim": LDA_sim,
+            "incorrect_possibility": incorrect_possibility,
+            "origin_html": origin_html,
+            "word_trueScore": word_trueScore,
+            "juFa_trueScore": juFa_trueScore,
+            "incorrect_trueScore": incorrect_trueScore,
+            "LDA_trueSim": LDA_sim * 5,
+        }
+# *************************
+
+
 # ******************************ztz 添加的代码**************************************************
         # 输入UTF8编码文章，输出词汇难度，句法难度，修改错别字
         fenJu_WenZhang = []
@@ -204,9 +309,9 @@ class RecordsApi(Resource):
 
         # 输出到页面上
         totalScore = round(random.random() * 50 + 50, 1)
-        vocabularyLevel = round(word_score, 1)
-        titleRelativity = round(similary, 1)
-        sentenceDifficulty =  round(juFa_Score, 1)
+        vocabularyLevel = round(result["word_trueScore"], 1)
+        titleRelativity = round(result["LDA_trueSim"], 1)
+        sentenceDifficulty =  round(result["juFa_trueScore"], 1)
         articleComment  = origin_html
         # articleComment = huanhang.join(original_wenzhang)# 带有标记的原文章放到原文点评（zhy）
         # suggestion = "先草率地随意留个提升建议"
