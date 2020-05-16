@@ -19,49 +19,49 @@
                 </el-col>
             </el-row>
             <el-row class="el-row2" v-if="visible2">
-                <div class="pic1">
-                    <div id="scoreLine" style="width: 100%; height: 300px">
+                       <div class="pic1">
+                    <div id="scoreLine" style="width:100%; height:300px">
                         <!-- 此处为总得分统计折线图 -->
                     </div>
                 </div>
-                <div class="suggestion1">
-                    <el-col :span="24">
-                        <el-card class="suggestion-card">
-                            <p>建议：</p>
-                            <p>{{ suggestion }}</p>
-                        </el-card>
-                    </el-col>
-                </div>
-            </el-row>
-            <el-row class="el-row2" v-if="visible2">
-                <div class="pic2">
-                        <div id="vocabularyLine" style="width: 100%; height: 300px">
-                            <!-- 此处为词汇水平得分统计折线图 -->
-                        </div>
-                </div>
-                <div class="suggestion2">
-                    <el-col :span="24">
-                    <el-card class="suggestion-card">
+                    <div class="mistake_word">
+                         <el-col :span="24">
+                    <!-- TODO: 错字表 -->
+                    <el-card class="mistake-card">
                         <el-table
                             :data="tableData"
-                            height="260px"
-                            style="width: 100%"
+                            style="width: 100"
+                            height="270"
                             :default-sort = "{prop: 'num', order: 'descending'}"
                             >
                             <el-table-column
                                 prop="wrongchar"
                                 label="错别字"
-                                width="180">
-                                </el-table-column>
+                                align="center"
+                                width="195">
+                            </el-table-column>
                             <el-table-column
                                 prop="num"
                                 label="错误次数"
+                                align="center"
                                 width="180">
                             </el-table-column>
                         </el-table>
                     </el-card>
                 </el-col>
                 </div>
+            </el-row>
+            <el-row class="el-row2" v-if="visible2">
+              <div class="pic2">
+                        <div id="vocabularyLine" style="width:100%; height:300px">
+                            <!-- 此处为词汇水平得分统计折线图 -->
+              </div>
+          </div>
+              <div class="pic3">
+                        <div id="wrongcharChart" style="width:100%; height:300px">
+                        <!-- 此处为错别字统计柱状图 -->
+              </div>
+          </div>
             </el-row>
         </div>
     </el-main>
@@ -118,7 +118,7 @@
                 timeValue: ''
             }
         },
-        // 初始化页面显示所有记录的数据
+        // 初始化页面显示全部记录的数据
         mounted () {
             https.fetchGet('history').then((res) => {
                 if (res.data['code'] === 200) {
@@ -133,7 +133,7 @@
                         if (JSON.stringify(this.wrongchars) === '{}') {
                             this.visible3 = false;
                         } else {
-                            // this.drawWrongcharChart();
+                            this.drawWrongcharChart();
                         }
 
                         this.drawScoreLine();
@@ -171,7 +171,7 @@
                             if (JSON.stringify(this.wrongchars) === '{}') {
                                 this.visible3 = false;
                             } else {
-                                // this.drawWrongcharChart();
+                                this.drawWrongcharChart();
                             }
 
                             this.drawScoreLine();
@@ -384,47 +384,45 @@
 </script>
 
 <style lang="scss" scoped>
-    .suggestion-card {
-        // background-color: aquamarine;
+    .mistake-card {
+        //background-color: aquamarine;
         background-color: ghostwhite;
         text-align: left;
         height: 300px;
-        // padding-top: 5px;
+        //padding-top:5px;
         border-radius: 10px;
-        -moz-box-shadow: 2px 2px 5px #333333;
-        -webkit-box-shadow: 2px 2px 5px #333333;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
         box-shadow: 7px 15px 30px #285a63;
     }
     .sugg1{
-        color: #ff724c;
-        font-weight: bold;
-        font-size: 21px;
-        background-color: rgba(253, 232, 213, 0.98);
-        border-radius: 10px;
-        // 阴影
-        -moz-box-shadow: 1px 1px 1px #59bbbb;
-        -webkit-box-shadow: 1px 1px 1px #bcfcff;
-        box-shadow: 5px 10px 10px #fde8d5;
+          color: #ff724c;
+          font-weight: bold;
+          font-size:21px;
+          background-color: rgba(253, 232, 213, 0.98);
+              border-radius: 10px;
+              /*阴影*/
+              -moz-box-shadow:1px 1px 1px #59bbbb;             -webkit-box-shadow:1px 1px 1px #bcfcff;
+              box-shadow: 5px 10px 10px #fde8d5;
     }
 
     .sugg2{
-        color: #ff724c;
-        font-weight: bold;
-        font-size: 21px;
-        background-color: rgba(253, 232, 213, 0.98);
-        border-radius: 10px;
-        // 阴影
-        -moz-box-shadow: 1px 1px 1px #59bbbb;
-        -webkit-box-shadow: 1px 1px 1px #bcfcff;
-        box-shadow: 5px 10px 10px #fde8d5;
+          color: #ff724c;
+          font-weight: bold;
+          font-size:21px;
+          background-color: rgba(253, 232, 213, 0.98);
+              border-radius: 10px;
+              /*阴影*/
+              -moz-box-shadow:1px 1px 1px #59bbbb;             -webkit-box-shadow:1px 1px 1px #bcfcff;
+              box-shadow: 5px 10px 10px #fde8d5;
     }
     .number{
-        font-size: 20px;
-        font-weight: bold;
-        color: #ff724c;
+      font-size:20px;
+      font-weight:bold;
+      color:#ff724c;
     }
     .el-row1 {
-        margin: 15px 80px 20px 20px;
+        margin:15px 80px 20px 20px;
     }
     .el-row2 {
         margin-top: 60px;
@@ -434,38 +432,46 @@
     }
     .pic1{
         background-color: ghostwhite;
-        position: relative;
-        margin-left: 40px;
-        width: 420px;
+        position:relative;
+        margin-left:40px;
+        width:420px;
         border-radius: 10px;
-        -moz-box-shadow: 2px 2px 5px #333333;
-        -webkit-box-shadow: 2px 2px 5px #333333;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
         box-shadow: 7px 15px 30px #285a63;
     }
-    .suggestion1{
-        position: absolute;
-        margin-left: 505px;
-        margin-top: -305px;
-        width: 420px;
+    .mistake_word{
+        background-color: ghostwhite;
+        position:absolute;
+        margin-left:505px;
+        margin-top:-302px;
+        width:420px;
+        border-radius: 10px;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
+        box-shadow: 7px 15px 30px #285a63;
     }
     .pic2{
         background-color: ghostwhite;
-        position: relative;
-        margin-left: 40px;
-        margin-bottom: 20px;
-        width: 420px;
+        position:relative;
+        margin-left:40px;
+        margin-bottom:20px;
+        width:420px;
         border-radius: 10px;
-        -moz-box-shadow: 2px 2px 5px #333333;
-        -webkit-box-shadow: 2px 2px 5px #333333;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
         box-shadow: 7px 15px 30px #285a63;
     }
-    .suggestion2{
+    .pic3{
         background-color: ghostwhite;
-        position: absolute;
-        margin-left: 510px;
-        margin-top: -325px;
-        margin-bottom: 20px;
-        width: 420px;
+        position:absolute;
+        margin-left:505px;
+        margin-top:-322px;
+        margin-bottom:20px;
+        width:420px;
         border-radius: 10px;
+        -moz-box-shadow:2px 2px 5px #333333;
+        -webkit-box-shadow:2px 2px 5px #333333;
+        box-shadow: 7px 15px 30px #285a63;
     }
 </style>
