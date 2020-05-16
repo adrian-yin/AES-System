@@ -20,7 +20,7 @@ class RecordModel(db.Model):
     incorrect_score = db.Column(db.Float, nullable=False, default=0)
     sentence_difficulty = db.Column(db.Float, nullable=False, default=0)
     article_comment = db.Column(db.String(8000), default='')
-    suggestion = db.Column(db.String(8000), default='')
+    suggestion = db.Column(db.String(30000), default='')
     # vocabulary_development = db.Column(db.String(500), default='')
     hsk1 = db.Column(db.Integer, nullable=False, default=0)
     hsk2 = db.Column(db.Integer, nullable=False, default=0)
