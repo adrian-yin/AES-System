@@ -130,3 +130,5 @@ yarn-error.log*
 .VSCodeCounter/
 
 migrations/
+
+correct_*.json
