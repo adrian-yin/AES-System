@@ -297,7 +297,7 @@
                         axisLabel: {
                             inside: true,
                             textStyle: {
-                                color: '#fff'
+                                color: '#000000'
                             }
                         },
                         axisTick: {

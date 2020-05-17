@@ -570,6 +570,7 @@ export default {
   padding: 0px 0px !important;
 }
 .ql-container {
+  text-align: left;
   font-size: 17px !important;
   line-height: 1.88 !important;
   letter-spacing: 0.4px !important;
