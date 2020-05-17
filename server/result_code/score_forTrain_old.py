@@ -153,14 +153,14 @@ class wenmind_score:
         }
         # print(essay)
         data_write = json.dumps(data_write)
-        url_write = "http://202.112.194.61:8091/gec/write"
+        url_write = "http://202.112.194.61:8091/api/gec/write"
         r = requests.post(url=url_write, headers=headers, data=data_write)
         print(re.search('\d+', r.text))
         data_check = {
             "id": re.search('\d+', r.text).group(0)
         }
         data_check = json.dumps(data_check)
-        url_check = "http://202.112.194.61:8091/gec/check"
+        url_check = "http://202.112.194.61:8091/api/gec/check"
         r = requests.post(url=url_check, headers=headers, data=data_check)
         result = r.json()
         # print(result["essay"]["origin_html"])

@@ -14,7 +14,7 @@ from config import ProductConfig
 app = Flask(__name__)
  
 # 添加配置信息
-app.config.from_object(DevelopConfig)
+app.config.from_object(ProductConfig)
 
 # 使应用支持跨域资源访问
 CORS(app, supports_credentials=True)

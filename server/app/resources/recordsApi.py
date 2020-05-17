@@ -92,14 +92,14 @@ def correct_byWenXin(essay):
     }
     # print(essay)
     data_write = json.dumps(data_write)
-    url_write = "http://202.112.194.61:8091/gec/write"
+    url_write = "http://202.112.194.61:8091/api/gec/write"
     r = requests.post(url=url_write, headers=headers, data=data_write)
     # print(re.search('\d+', r.text))
     data_check = {
         "id":re.search('\d+', r.text).group(0)
     }
     data_check = json.dumps(data_check)
-    url_check = "http://202.112.194.61:8091/gec/check"
+    url_check = "http://202.112.194.61:8091/api/gec/check"
     r = requests.post(url=url_check, headers=headers, data=data_check)
     result = r.json()
     return result, result["essay"]["origin"], result["essay"]["correct"], result["essay"]["problem_detail"], result["essay"]["origin_html"]
@@ -150,6 +150,7 @@ class RecordsApi(Resource):
 
         word_score, fenbu, totalWord_num = wenmind.word(
             fenCi_WenZhang)
+        hsk_fenbu = fenbu.copy()
         # # 求词汇水平的打分，是对这篇文章之中不重复的词，找出其hsk难度，求平均
         # # 并给出词汇难度的分布
         print("词汇裸分："+str(word_score))
@@ -313,21 +314,27 @@ class RecordsApi(Resource):
 # *******************************************************************************************************************
 
         # 输出到页面上
-        totalScore = round(random.random() * 50 + 50, 1)
         vocabularyLevel = round(result["word_trueScore"], 1)
         titleRelativity = round(result["LDA_trueSim"], 1)
         incorrectScore = round(result["incorrect_trueScore"], 1)
         sentenceDifficulty =  round(result["juFa_trueScore"], 1)
+        totalScore = round((-0.50226904 * titleRelativity * 5) + (5.97474346 * vocabularyLevel) + (5.87867278 * sentenceDifficulty) + (6.0266647 * incorrectScore) + 5.0803449164092065, 1)
         articleComment  = origin_html
         # articleComment = huanhang.join(original_wenzhang)# 带有标记的原文章放到原文点评（zhy）
         # suggestion = "先草率地随意留个提升建议"
         # vocabularyDevelopment = str(ans)
-        hsk1 = random.random() * 15
-        hsk2 = random.random() * 15
-        hsk3 = random.random() * 15
-        hsk4 = random.random() * 15
-        hsk5 = random.random() * 15
-        hsk6 = random.random() * 15
+        print("hsk: ", hsk_fenbu)
+        for i in range(7):
+            try:
+                tm_string=hsk_fenbu[i]
+            except:
+                hsk_fenbu[i]=0
+        hsk1 = hsk_fenbu[1]
+        hsk2 = hsk_fenbu[2]
+        hsk3 = hsk_fenbu[3]
+        hsk4 = hsk_fenbu[4]
+        hsk5 = hsk_fenbu[5]
+        hsk6 = hsk_fenbu[6]
         r = RecordModel(articleTitle, articleContent, totalScore, vocabularyLevel, titleRelativity, incorrectScore, sentenceDifficulty, articleComment, suggestion, hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, g.user.id)
         r.add_record()
             

@@ -60,6 +60,6 @@ class ConfirmApi(Resource):
         # 并连接的是163的STMP
         server.set_debuglevel(1)  # 所有的交互记录写到服务器
         server.login(from_addr, password)  # 登录服务器（校对一下是不是都是163）
-        server.sendmail(from_addr, [to_addr], msg.as_string())  # list里面可以放多个收件人，msg.as_string是把msg里面的文本内容转化成字符串
+        server.sendmail(from_addr, [to_addr], msg.as_string())
         server.quit()
         return jsonify(code=200, message="验证码已发送！")

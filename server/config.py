@@ -30,4 +30,4 @@ class DevelopConfig(Config):
 # 产品环境下配置
 class ProductConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:jx9X-HC?@localhost:3306/aesdb?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://aesuser:aes2020blcu@localhost:3306/aesdb?charset=utf8'
